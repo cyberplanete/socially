@@ -34,6 +34,16 @@ class _SigninStateController extends State<SigninController> {
                 startColor: kBase,
                 endColor: kBaseAccent,
                 isHorizontal: false),
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 15),
+                  ),
+                  Image(image: kLogoWhiteImage),
+                ],
+              ),
+            ),
           ),
         ),
       ),

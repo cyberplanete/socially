@@ -30,9 +30,9 @@ class _SigninStateController extends State<SigninController> {
             ///Dégradé de couleur
             decoration: MyGradientWidgetBoxDecoration(
 
-                ///Pour dégradé horizontal isHorizontal sur true
-                startColor: Colors.red,
-                endColor: Colors.green,
+                ///Pour dégradé horizontal isHorizontal doit être sur true
+                startColor: kBase,
+                endColor: kBaseAccent,
                 isHorizontal: false),
           ),
         ),

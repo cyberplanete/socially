@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       ///S'abonner au stream changement d'authentification pour observer les informations de connections: signin signout
       stream: FirebaseAuth.instance.authStateChanges(),
 
-      /// Ces informations sont utilisées dans mon constructeur- Si il y a pas de donnée d'un utilisateur connecté alors SigninController
+      /// Ces informations sont utilisées dans mon constructeur- Si il y a pas de donnée d'un utilisateur connecté alors je dirige l'utilisateur vers SigninController
       builder: (BuildContext context, snapshot) {
         return (!snapshot.hasData) ? SigninController() : MainAppController();
       },

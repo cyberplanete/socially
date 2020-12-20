@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socially/views/my_material.dart';
 
 class SigninController extends StatefulWidget {
   _SigninStateController createState() => _SigninStateController();
@@ -9,10 +10,32 @@ class _SigninStateController extends State<SigninController> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Center(
-      child: Text(
-        'Not Connected',
-        style: TextStyle(color: Colors.green),
+    return Scaffold(
+      body: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (overScroll) {
+          ///Notification received
+          overScroll.disallowGlow();
+          return true;
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            ///Taille du container calculer en fonction de la taille de l'ecran
+            width: MediaQuery.of(context).size.width,
+            height: (MediaQuery.of(context).size.height > 650)
+
+                ///Si oui j'utilise la taille de l'ecran
+                ? MediaQuery.of(context).size.height
+                : 650,
+
+            ///Dégradé de couleur
+            decoration: MyGradientWidgetBoxDecoration(
+
+                ///Pour dégradé horizontal isHorizontal sur true
+                startColor: Colors.red,
+                endColor: Colors.green,
+                isHorizontal: false),
+          ),
+        ),
       ),
     );
   }

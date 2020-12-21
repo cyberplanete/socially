@@ -15,19 +15,21 @@ class MyMenuTwoItems extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      width: 300,
-      height: 50,
-      decoration: BoxDecoration(
-        color: kPointer,
-        borderRadius: BorderRadius.all(
-          Radius.circular(25.0),
+        width: 300,
+        height: 50,
+        decoration: BoxDecoration(
+          color: kPointer,
+          borderRadius: BorderRadius.all(
+            Radius.circular(25.0),
+          ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [itemButton(itemMenu1), itemButton(itemMenu2)],
-      ),
-    );
+        child: CustomPaint(
+          painter: MyCustomPaintSignIn(pageController: pageController),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [itemButton(itemMenu1), itemButton(itemMenu2)],
+          ),
+        ));
   }
 
   Expanded itemButton(String name) {

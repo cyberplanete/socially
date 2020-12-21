@@ -11,8 +11,8 @@ class _SigninStateController extends State<SigninController> {
 
   @override
   void initState() {
-    super.initState();
     _pageController = PageController();
+    super.initState();
   }
 
   @override
@@ -44,7 +44,7 @@ class _SigninStateController extends State<SigninController> {
             decoration: MyGradientWidgetBoxDecoration(
 
                 ///Pour dégradé horizontal isHorizontal doit être sur true
-                startColor: kBase,
+                startColor: kBaseColor,
                 endColor: kBaseAccent,
                 isHorizontal: false),
             child: SafeArea(
@@ -60,13 +60,14 @@ class _SigninStateController extends State<SigninController> {
                     unWidget: MyMenuTwoItems(
                         itemMenu1: 'Connexion',
                         itemMenu2: 'Creation',
-                        pageController: null),
+                        pageController: _pageController),
                     top: 20.0,
                     bottom: 10,
                   ),
                   Expanded(
                       flex: 2,
                       child: PageView(
+                        //Retourne l'index de la page
                         controller: _pageController,
                         children: [viewSignIn(0), viewSignIn(1)],
                       ))

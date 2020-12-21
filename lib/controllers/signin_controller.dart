@@ -62,13 +62,26 @@ class _SigninStateController extends State<SigninController> {
                         itemMenu2: 'Creation',
                         pageController: null),
                     top: 20.0,
-                  )
+                    bottom: 10,
+                  ),
+                  Expanded(
+                      flex: 2,
+                      child: PageView(
+                        controller: _pageController,
+                        children: [viewSignIn(0), viewSignIn(1)],
+                      ))
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget viewSignIn(int index) {
+    return Container(
+      color: (index == 0) ? kPointer : kWhite,
     );
   }
 }

@@ -7,9 +7,22 @@ class SigninController extends StatefulWidget {
 
 ///Cette page quand l'utilisateur n'est pas connecté
 class _SigninStateController extends State<SigninController> {
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (overScroll) {
@@ -43,6 +56,13 @@ class _SigninStateController extends State<SigninController> {
                       height: 100,
                     ),
                   ),
+                  MyPaddingCustomWith(
+                    unWidget: MyMenuTwoItems(
+                        itemMenu1: 'Connexion',
+                        itemMenu2: 'Creation',
+                        pageController: null),
+                    top: 20.0,
+                  )
                 ],
               ),
             ),

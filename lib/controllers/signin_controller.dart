@@ -37,10 +37,12 @@ class _SigninStateController extends State<SigninController> {
             child: SafeArea(
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 15),
+                  MyPaddingCustomWith(
+                    unWidget: Image(
+                      image: kLogoWhiteImage,
+                      height: 100,
+                    ),
                   ),
-                  Image(image: kLogoWhiteImage),
                 ],
               ),
             ),

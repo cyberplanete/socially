@@ -32,8 +32,10 @@ class _SigninStateController extends State<SigninController> {
         },
         child: SingleChildScrollView(
           child: Container(
-            ///Taille du container calculer en fonction de la taille de l'ecran
+            ///Taille de la page calculé en fonction de la taille de l'ecran
             width: MediaQuery.of(context).size.width,
+
+            ///Taille supérieur à 650 alors la totalite de l'ecran est utilisée
             height: (MediaQuery.of(context).size.height > 650)
 
                 ///Si oui j'utilise la taille de l'ecran
@@ -50,6 +52,7 @@ class _SigninStateController extends State<SigninController> {
             child: SafeArea(
               child: Column(
                 children: [
+                  ///Position de mon logo
                   MyPaddingCustomWith(
                     unWidget: Image(
                       image: kLogoWhiteImage,
@@ -57,6 +60,7 @@ class _SigninStateController extends State<SigninController> {
                     ),
                   ),
                   MyPaddingCustomWith(
+                    ///Position de mes boutons
                     unWidget: MyMenuTwoItems(
                         itemMenu1: 'Connexion',
                         itemMenu2: 'Creation',
@@ -66,6 +70,8 @@ class _SigninStateController extends State<SigninController> {
                   ),
                   Expanded(
                       flex: 2,
+
+                      ///Position du slider en bas de page contenant deux containers
                       child: PageView(
                         //Retourne l'index de la page
                         controller: _pageController,

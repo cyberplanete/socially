@@ -22,16 +22,17 @@ class MyCustomPaintSignIn extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (pageController != null && pageController.position != null) {
       ///le radius qui sera sur 20. Comme l'élément peint aura une hauteur de 40, pour ainsi obtenir des bords bien ronds.
-      ///le AxeY_Height: qui sera la position y. La hauteur du container étant de 50, pour être bien au milieu.
+      ///le AxeY_Height: qui sera la position y. La hauteur du container étant de 50, pour être bien au milieu. donc 25
       ///le axeXGauche: 25. la position minimum x au départ  (si notre page est à 0).
       ///le AxeXDroite: la position maximum x cible.
+      /// La moitié de 300
       final radius = 20.0;
       final AxeY_Height = 25.0;
       final axeXGauche = 25.0;
       final AxeXDroite = 125.0;
 
       ///La position. C'est la position de notre pageController.
-      ///Je récupère ainsi des valeurs par rapport à sa ScrollPositionWithSingleContext, sa direction, sa position par rapport au ViewportDimension et son axe de déroulement.
+      ///Je récupère ainsi des valeurs par rapport à sa ScrollPositionWithSingleContext, sa direction, sa position par rapport au ViewportDimension (La zone visuel du scroll lateral) et son axe de déroulement.
       ///Le extent: je récupére une valeur qui sera la valeur max de pixels, moins la valeur minimum de pixels à laquelle nous ajouterons les dimensions du viewport.
       ///Ensuite j'obtiens un offset en divisant le extentBefore(qui est la quantité de contenu visible du viewport dans notre élément déroulant) par rapport à la
       ///valeur entent créée.

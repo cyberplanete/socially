@@ -9,7 +9,8 @@ class MyMenuTwoItems extends StatelessWidget {
   MyMenuTwoItems(
       {@required this.itemMenu1,
       @required this.itemMenu2,
-      @required this.pageController});
+      @required this.pageController,
+      Color itemMenu1Color});
 
   @override
   Widget build(BuildContext context) {

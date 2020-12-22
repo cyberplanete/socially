@@ -8,15 +8,28 @@ class SigninController extends StatefulWidget {
 ///Cette page quand l'utilisateur n'est pas connecté
 class _SigninStateController extends State<SigninController> {
   PageController _pageController;
+  TextEditingController _mail;
+  TextEditingController _nom;
+  TextEditingController _prenom;
+  TextEditingController _password;
 
   @override
   void initState() {
     _pageController = PageController();
+    _mail = TextEditingController();
+    _nom = TextEditingController();
+    _prenom = TextEditingController();
+    _password = TextEditingController();
     super.initState();
   }
 
+  ///Libère les ressources -- Appelé lors du changement de state de la page - Exemple: Lors d'un changement de page
   @override
   void dispose() {
+    _mail.dispose();
+    _nom.dispose();
+    _prenom.dispose();
+    _password.dispose();
     _pageController.dispose();
     super.dispose();
   }
@@ -64,6 +77,8 @@ class _SigninStateController extends State<SigninController> {
                     unWidget: MyMenuTwoItems(
                         itemMenu1: 'Connexion',
                         itemMenu2: 'Creation',
+                        itemMenu1Color:
+                            (_pageController.page == 0) ? Colors.black : kWhite,
                         pageController: _pageController),
                     top: 20.0,
                     bottom: 10,
@@ -87,10 +102,17 @@ class _SigninStateController extends State<SigninController> {
     );
   }
 
+  ///Se positionne dessous les boutons
   Widget viewSignIn(int index) {
     return Column(
       children: [
         MyPaddingCustomWith(
+          top: 50,
+          bottom: 15,
+
+          ///Padding a partir du bord de l'écran
+          left: 15,
+          right: 15,
           unWidget: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
@@ -99,15 +121,61 @@ class _SigninStateController extends State<SigninController> {
             elevation: 7,
 
             ///Card invisible si pas de child !!!
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [],
-            ),
+            child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                ///l'index 0 est pour un utilisateur deja enregistré
+                children: [
+                  Container(
+                    child: Column(
+                      children: listOfUserTextField((index == 0)),
+                    ),
+                    margin: EdgeInsets.all(20),
+                  )
+                ]
+                //listOfUserTextField((index == 0)),
+                ),
           ),
-          top: 15,
-          bottom: 15,
         )
       ],
     );
+  }
+
+  /// IsUserExist est déterminé par l'index de la page -  Si je suis sur la premiere page alors l'utisateur exist - Choix de l'utilisateur
+  List<Widget> listOfUserTextField(bool isUserExist) {
+    List<Widget> listOfWidgetTextField = [];
+
+    if (!isUserExist) {
+      listOfWidgetTextField.add(
+        MyTextField(
+          textEditingController: _nom,
+          textInputType: TextInputType.name,
+          hintText: 'Entrez votre nom',
+        ),
+      );
+      listOfWidgetTextField.add(
+        MyTextField(
+          textEditingController: _prenom,
+          textInputType: TextInputType.name,
+          hintText: 'Entrez votre prénom',
+        ),
+      );
+    }
+    listOfWidgetTextField.add(
+      MyTextField(
+        textEditingController: _mail,
+        textInputType: TextInputType.emailAddress,
+        hintText: 'Entrez votre adresse email',
+      ),
+    );
+    listOfWidgetTextField.add(
+      MyTextField(
+        textEditingController: _password,
+        textInputType: TextInputType.name,
+        hidePassword: true,
+        hintText: 'Entrer votre mot de passe',
+      ),
+    );
+
+    return listOfWidgetTextField;
   }
 }

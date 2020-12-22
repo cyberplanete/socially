@@ -69,14 +69,15 @@ class _SigninStateController extends State<SigninController> {
                     bottom: 10,
                   ),
                   Expanded(
-                      flex: 2,
+                    flex: 2,
 
-                      ///Position du slider en bas de page contenant deux containers
-                      child: PageView(
-                        //Retourne l'index de la page
-                        controller: _pageController,
-                        children: [viewSignIn(0), viewSignIn(1)],
-                      ))
+                    ///Position du slider en bas de page contenant deux containers
+                    child: PageView(
+                      //Retourne l'index de la page
+                      controller: _pageController,
+                      children: [viewSignIn(0), viewSignIn(1)],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -87,8 +88,26 @@ class _SigninStateController extends State<SigninController> {
   }
 
   Widget viewSignIn(int index) {
-    return Container(
-      color: (index == 0) ? kPointer : kWhite,
+    return Column(
+      children: [
+        MyPaddingCustomWith(
+          unWidget: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            color: kWhite,
+            elevation: 7,
+
+            ///Card invisible si pas de child !!!
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [],
+            ),
+          ),
+          top: 15,
+          bottom: 15,
+        )
+      ],
     );
   }
 }

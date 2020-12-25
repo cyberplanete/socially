@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyGradientWidgetBoxDecoration extends BoxDecoration {
+class MyGradientColorWidgetBoxDecoration extends BoxDecoration {
   ///represents the top left x
   static final FractionalOffset beginHorizontalLeft = FractionalOffset(00, 00);
 
@@ -14,7 +14,7 @@ class MyGradientWidgetBoxDecoration extends BoxDecoration {
   final Color endColor;
   final bool isHorizontal;
   final double radius;
-  MyGradientWidgetBoxDecoration(
+  MyGradientColorWidgetBoxDecoration(
       {@required this.startColor,
       @required this.endColor,
       this.isHorizontal = false,

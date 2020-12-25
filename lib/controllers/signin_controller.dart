@@ -56,7 +56,7 @@ class _SigninStateController extends State<SigninController> {
                 : 650,
 
             ///Dégradé de couleur
-            decoration: MyGradientWidgetBoxDecoration(
+            decoration: MyGradientColorWidgetBoxDecoration(
 
                 ///Pour dégradé horizontal isHorizontal doit être sur true
                 startColor: kBaseColor,
@@ -73,12 +73,11 @@ class _SigninStateController extends State<SigninController> {
                     ),
                   ),
                   MyPaddingCustomWith(
-                    ///Position de mes boutons
+                    ///Position de mes boutons pour la création ou connexion
+                    ///todo modifier la couleur des boutons pour afficher le texte non visible lors du mouvement du customPaint
                     unWidget: MyMenuTwoItems(
                         itemMenu1: 'Connexion',
                         itemMenu2: 'Creation',
-                        itemMenu1Color:
-                            (_pageController.page == 0) ? Colors.black : kWhite,
                         pageController: _pageController),
                     top: 20.0,
                     bottom: 10,
@@ -102,7 +101,7 @@ class _SigninStateController extends State<SigninController> {
     );
   }
 
-  ///Se positionne dessous les boutons
+  ///Se positionne dessous les boutons - Affiche les vues contenant des textfields permettant la connexion ou la creation du compte
   Widget viewSignIn(int index) {
     return Column(
       children: [
@@ -111,8 +110,8 @@ class _SigninStateController extends State<SigninController> {
           bottom: 15,
 
           ///Padding a partir du bord de l'écran
-          left: 15,
-          right: 15,
+          left: 20,
+          right: 20,
           unWidget: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
@@ -129,13 +128,41 @@ class _SigninStateController extends State<SigninController> {
                     child: Column(
                       children: listOfUserTextField((index == 0)),
                     ),
-                    margin: EdgeInsets.all(20),
+                    margin: EdgeInsets.only(
+                        left: 20, right: 20, top: 15, bottom: 15),
                   )
                 ]
                 //listOfUserTextField((index == 0)),
                 ),
           ),
-        )
+        ),
+
+        ///Position du bouton création de compte ou connexion
+        MyPaddingCustomWith(
+            top: 15,
+            bottom: 15,
+            unWidget: Card(
+              elevation: 7.5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              child: Container(
+                width: 300,
+                height: 50,
+                decoration: MyGradientColorWidgetBoxDecoration(
+                    startColor: kBaseColor,
+                    endColor: kBaseAccent,
+                    radius: 25,
+                    isHorizontal: true),
+                child: FlatButton(
+                  onPressed: null,
+                  child: Text(
+                    (index == 0) ? 'Se connecter' : 'Créer un compte',
+                    style: TextStyle(color: kWhite),
+                  ),
+                ),
+              ),
+            ))
       ],
     );
   }

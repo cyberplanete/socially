@@ -4,13 +4,14 @@ import 'package:socially/views/my_material.dart';
 class MyMenuTwoItems extends StatelessWidget {
   final String itemMenu1;
   final String itemMenu2;
+  Color myColor;
   final PageController pageController;
 
-  MyMenuTwoItems({
-    @required this.itemMenu1,
-    @required this.itemMenu2,
-    @required this.pageController,
-  });
+  MyMenuTwoItems(
+      {@required this.itemMenu1,
+      @required this.itemMenu2,
+      @required this.pageController,
+      this.myColor = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,9 @@ class MyMenuTwoItems extends StatelessWidget {
           int page = (pageController.page == 0.0) ? 1 : 0;
           pageController.animateToPage(page,
               duration: Duration(milliseconds: 500), curve: Curves.decelerate);
+          myColor = (page == 1) ? Colors.black : Colors.white;
         },
-        child: Text(
-          name,
-          style: TextStyle(color: Colors.white),
-        ),
+        child: Text(name, style: TextStyle(color: myColor)),
       ),
     );
   }

@@ -156,9 +156,8 @@ class _SigninStateController extends State<SigninController> {
                     isHorizontal: true),
                 child: FlatButton(
                   onPressed: null,
-                  child: Text(
-                    (index == 0) ? 'Se connecter' : 'Créer un compte',
-                    style: TextStyle(color: kWhite),
+                  child: MyTextButton(
+                    data: (index == 0) ? 'Se connecter' : 'Créer un compte',
                   ),
                 ),
               ),

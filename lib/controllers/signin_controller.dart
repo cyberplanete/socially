@@ -44,6 +44,15 @@ class _SigninStateController extends State<SigninController> {
           return true;
         },
         child: SingleChildScrollView(
+
+            ///A rectangular area of a Material that responds to touch
+            child: InkWell(
+          onTap: () {
+            ///You can dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused FocusNode
+            /// FocusScope.of(context).requestFocus(FocusNode());
+            /// Flutter 1.17.3 stable channel as of June 2020
+            FocusManager.instance.primaryFocus.unfocus();
+          },
           child: Container(
             ///Taille de la page calculé en fonction de la taille de l'ecran
             width: MediaQuery.of(context).size.width,
@@ -75,9 +84,9 @@ class _SigninStateController extends State<SigninController> {
                   MyPaddingCustomWith(
                     ///Position de mes boutons pour la création ou connexion
                     ///todo modifier la couleur des boutons pour afficher le texte non visible lors du mouvement du customPaint
-                    unWidget: MyMenuTwoItems(
-                        itemMenu1: 'Connexion',
-                        itemMenu2: 'Creation',
+                    unWidget: MyMenuConnectOrCreate(
+                        itemMenuName1: 'Connexion',
+                        itemMenuName2: 'Creation',
                         pageController: _pageController),
                     top: 20.0,
                     bottom: 10,
@@ -96,7 +105,7 @@ class _SigninStateController extends State<SigninController> {
               ),
             ),
           ),
-        ),
+        )),
       ),
     );
   }
@@ -157,6 +166,7 @@ class _SigninStateController extends State<SigninController> {
                 child: FlatButton(
                   onPressed: null,
                   child: MyTextButton(
+                    ///Nom en fonction de l'index de la page
                     data: (index == 0) ? 'Se connecter' : 'Créer un compte',
                   ),
                 ),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:socially/views/my_material.dart';
 
-class MyMenuTwoItems extends StatelessWidget {
-  final String itemMenu1;
-  final String itemMenu2;
+class MyMenuConnectOrCreate extends StatelessWidget {
+  final String itemMenuName1;
+  final String itemMenuName2;
   Color myColor;
   final PageController pageController;
 
-  MyMenuTwoItems(
-      {@required this.itemMenu1,
-      @required this.itemMenu2,
+  MyMenuConnectOrCreate(
+      {@required this.itemMenuName1,
+      @required this.itemMenuName2,
       @required this.pageController,
       this.myColor = Colors.black});
 
@@ -29,7 +29,7 @@ class MyMenuTwoItems extends StatelessWidget {
           painter: MyCustomPaintSignIn(pageController: pageController),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [itemButton(itemMenu1), itemButton(itemMenu2)],
+            children: [itemButton(itemMenuName1), itemButton(itemMenuName2)],
           ),
         ));
   }

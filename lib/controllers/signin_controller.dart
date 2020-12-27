@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socially/useful/alert_box.dart';
 import 'package:socially/views/my_material.dart';
 
 class SigninController extends StatefulWidget {
@@ -34,6 +35,13 @@ class _SigninStateController extends State<SigninController> {
     super.dispose();
   }
 
+  ///You can dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused FocusNode
+  /// FocusScope.of(context).requestFocus(FocusNode());
+  /// Flutter 1.17.3 stable channel as of June 2020
+  hideKeyboard() {
+    FocusManager.instance.primaryFocus.unfocus();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +59,7 @@ class _SigninStateController extends State<SigninController> {
             ///You can dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused FocusNode
             /// FocusScope.of(context).requestFocus(FocusNode());
             /// Flutter 1.17.3 stable channel as of June 2020
-            FocusManager.instance.primaryFocus.unfocus();
+            hideKeyboard();
           },
           child: Container(
             ///Taille de la page calculé en fonction de la taille de l'ecran
@@ -164,7 +172,7 @@ class _SigninStateController extends State<SigninController> {
                     radius: 25,
                     isHorizontal: true),
                 child: FlatButton(
-                  onPressed: null,
+                  onPressed: () => seConnecter(index == 0),
                   child: MyTextButton(
                     ///Nom en fonction de l'index de la page
                     data: (index == 0) ? 'Se connecter' : 'Créer un compte',
@@ -213,5 +221,35 @@ class _SigninStateController extends State<SigninController> {
     );
 
     return listOfWidgetTextField;
+  }
+
+  seConnecter(bool isUserExist) {
+    hideKeyboard();
+    if (_mail.text != null && _mail.text != '') {
+      if (_password.text != null && _password.text != '') {
+        if (isUserExist) {
+          ///Connection avec mail et password
+        } else {
+          ///Verification nom et prenom puis inscription
+          if (_nom.text != null && _nom.text != '') {
+            if (_prenom.text != null && _prenom.text != '') {
+              ///inscription
+            } else {
+              ///alerte box pas de prenom
+              MyAlertBox().error(context, 'Pas de prénom');
+            }
+          } else {
+            ///alerte box pas de nom
+            MyAlertBox().error(context, 'Pas de nom');
+          }
+        }
+      } else {
+        ///alerte box pas de password
+        MyAlertBox().error(context, 'Pas de password');
+      }
+    } else {
+      ///alerte box pas de mail
+      MyAlertBox().error(context, 'Une adresse mail doit être ajoutée');
+    }
   }
 }

@@ -20,7 +20,7 @@ class MyGradientColorWidgetBoxDecoration extends BoxDecoration {
       this.isHorizontal = false,
       this.radius = 0.0})
       : super(
-          ///Dégradé avec début de couleur et fin de couleur /// Dégrade sur l'horizontal
+          ///Dégradé avec début et fin de couleur /// Dégrade sur l'horizontal
           gradient: LinearGradient(
               colors: [startColor, endColor],
               begin: beginHorizontalLeft,

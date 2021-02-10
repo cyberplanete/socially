@@ -14,6 +14,7 @@ class MyAlertBox {
     );
 
     ///If barrierDismissible is true, then tapping this barrier will cause the current route to be popped (see Navigator.pop) with null as the value.
+    ///Montre une dialogBox Android ou pour Ios
     return showDialog(
       context: context,
       barrierDismissible: true,

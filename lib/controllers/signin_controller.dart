@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/useful/alert_box.dart';
 import 'package:socially/views/my_material.dart';
 
@@ -16,6 +17,7 @@ class _SigninStateController extends State<SigninController> {
 
   @override
   void initState() {
+    /// InputText Zones d'insertion de texte
     _pageController = PageController();
     _mail = TextEditingController();
     _nom = TextEditingController();
@@ -223,17 +225,26 @@ class _SigninStateController extends State<SigninController> {
     return listOfWidgetTextField;
   }
 
-  seConnecter(bool isUserExist) {
+  seConnecter(bool isUserExist) async {
     hideKeyboard();
     if (_mail.text != null && _mail.text != '') {
       if (_password.text != null && _password.text != '') {
         if (isUserExist) {
           ///Connection avec mail et password
+          var message_retour =
+              await FireStoreLogique().connexion(_mail.text, _password.text);
+
+          /// Si erreur lors de la création de compte, j'affiche un message d'erreur
+          if (message_retour != null) {
+            MyAlertBox().error(context, message_retour.toString());
+          }
         } else {
           ///Verification nom et prenom puis inscription
           if (_nom.text != null && _nom.text != '') {
             if (_prenom.text != null && _prenom.text != '') {
               ///inscription
+              FireStoreLogique().creationCompte(
+                  _mail.text, _password.text, _nom.text, _prenom.text);
             } else {
               ///alerte box pas de prenom
               MyAlertBox().error(context, 'Pas de prénom');

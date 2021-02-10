@@ -3,17 +3,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FireStoreLogique {
   ///Autorisation
-  final autorisation_instance = FirebaseAuth.instance;
+  final firebase_auth_instance = FirebaseAuth.instance;
 
-  Future<UserCredential> connexion(String email, String pwd) async {
-    final UserCredential userCredential = await autorisation_instance
-        .signInWithEmailAndPassword(email: email, password: pwd);
-    return userCredential;
+  Future<String> connexion(String email, String pwd) async {
+    try {
+      final UserCredential userCredential = await firebase_auth_instance
+          .signInWithEmailAndPassword(email: email, password: pwd);
+      //return userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      return e.message;
+    }
   }
 
-  Future<UserCredential> creationCompte(
+  Future<User> creationCompte(
       String email, String pwd, String nom, String prenom) async {
-    final UserCredential userCredential = await autorisation_instance
+    final UserCredential userCredential = await firebase_auth_instance
         .createUserWithEmailAndPassword(email: email, password: pwd);
 
     ///Créer mon utilisateur pour l'ajouter dans la bdd
@@ -31,10 +36,10 @@ class FireStoreLogique {
       "uid": uid
     };
     ajouterUtilisateur(uid, map);
-    return userCredential;
+    return userCredential.user;
   }
 
-  deconnexion() => autorisation_instance.signOut();
+  deconnexion() => firebase_auth_instance.signOut();
 
   ///Database
   static final data_instance = FirebaseFirestore.instance;

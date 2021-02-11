@@ -11,3 +11,12 @@ AssetImage kHomeImage = AssetImage('assets/home.jpg');
 AssetImage kProfileImage = AssetImage('assets/profile.jpg');
 AssetImage kEventImage = AssetImage('assets/event.jpg');
 AssetImage kLogoWhiteImage = AssetImage('assets/logoWhite.png');
+
+///Database Firestore
+
+String kNom = "nom";
+String kPrenom = "prenom";
+String kImageUrl = "imageUrl";
+String kAbonnes = "abonnees";
+String kAbonnementList = "adherents";
+String kUid = "uid";

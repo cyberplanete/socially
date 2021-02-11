@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:socially/views/my_material.dart';
 
 class FireStoreLogique {
   ///Autorisation
@@ -23,17 +24,17 @@ class FireStoreLogique {
 
     ///Créer mon utilisateur pour l'ajouter dans la bdd
     String uid = userCredential.user.uid;
-    List<dynamic> supporters = [];
+    List<dynamic> listAbonnes = [];
 
     ///j'ajoute l"uid de l'utilisateur par défaut afin qu'il puisse suivre les posts écris par l'utilisateur
-    List<dynamic> adherents = [uid];
+    List<dynamic> abonnementList = [uid];
     Map<String, dynamic> map = {
-      "nom": nom,
-      "prenom": prenom,
-      "imageUrl": "",
-      "supporters": supporters,
-      "adherents": adherents,
-      "uid": uid
+      kNom: nom,
+      kPrenom: prenom,
+      kImageUrl: "",
+      kAbonnes: listAbonnes,
+      kAbonnementList: abonnementList,
+      kUid: uid
     };
     ajouterUtilisateur(uid, map);
     return userCredential.user;
@@ -42,11 +43,12 @@ class FireStoreLogique {
   deconnexion() => firebase_auth_instance.signOut();
 
   ///Database
-  static final data_instance = FirebaseFirestore.instance;
-  final fireStore_user = data_instance.collection("utilisateurs");
+  static final firestore_instance = FirebaseFirestore.instance;
+  final fireStore_collectionOfUSers =
+      firestore_instance.collection("utilisateurs");
 
   ajouterUtilisateur(String uid, Map<String, dynamic> map) {
-    fireStore_user.doc(uid).set(map);
+    fireStore_collectionOfUSers.doc(uid).set(map);
   }
 
   ///Storage

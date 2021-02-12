@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/main_app_Controller.dart';
+import 'package:socially/controllers/main_page_Controller.dart';
 import 'package:socially/controllers/signin_controller.dart';
 
 Future<void> main() async {
@@ -38,7 +38,8 @@ class MyApp extends StatelessWidget {
         /// Si le snapshot de mon stream hasdata, je redirige l'utilisateur vers mainAppController,dans le cas contraire vers SigninController
         return (!snapshot.hasData)
             ? SigninController()
-            : MainAppController(uid: snapshot.data.uid);
+            // Je redirige l'utilisateur vers la page mainPageController et j'importe les donnees de l'utilisateur
+            : MainPageController(uid: snapshot.data.uid);
       },
     );
   }

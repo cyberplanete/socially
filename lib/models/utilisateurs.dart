@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:socially/views/my_widgets/constants.dart';
 
-class Utilisateurs {
+class Utilisateur {
   String uid;
   String nom;
   String prenom;
@@ -11,8 +11,8 @@ class Utilisateurs {
   DocumentReference documentReference;
   String documentId;
 
-  Utilisateurs(DocumentSnapshot documentSnapshot) {
-    Map<String, dynamic> map;
+  Utilisateur(DocumentSnapshot documentSnapshot) {
+    Map<String, dynamic> map = documentSnapshot.data();
     this.documentReference = documentSnapshot.reference;
     this.documentId = documentSnapshot.id;
     this.uid = map[kUid];

@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import '../my_material.dart';
 
-class MyProgressScafold extends StatelessWidget {
+class MyProgressIndicatorScafold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

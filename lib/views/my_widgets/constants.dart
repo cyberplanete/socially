@@ -20,3 +20,10 @@ String kImageUrl = "imageUrl";
 String kAbonnes = "abonnees";
 String kAbonnementList = "adherents";
 String kUid = "uid";
+
+///Icons
+Icon kHomeIcon = Icon(Icons.home);
+Icon kFriendsIcon = Icon(Icons.group);
+Icon kNotificationIcon = Icon(Icons.notifications);
+Icon kProfilIcon = Icon(Icons.account_circle);
+Icon kWriteIcon = Icon(Icons.border_color);

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/views/my_material.dart';
-import 'package:socially/views/my_widgets/my_bar_items.dart';
-import 'package:socially/views/my_widgets/my_progress_indicator_scafold.dart';
 
 class MainPageController extends StatefulWidget {
   String uid;
@@ -15,7 +13,7 @@ class MainPageController extends StatefulWidget {
   _StateMainAppController createState() => _StateMainAppController();
 }
 
-///Cette page est affiché quand l'utilisateur est connecté
+///Cette page est affiché quand l'utilisateur est connecté , contenant une bottomBarNavigation
 class _StateMainAppController extends State<MainPageController> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   StreamSubscription streamListenner;
@@ -53,23 +51,39 @@ class _StateMainAppController extends State<MainPageController> {
               barItems: [
                 ///Index est utilisé pour ajouter la couleur du bouton pressé
                 MyBarItem(
-                    icon: Icon(Icons.android),
+                    icon: kHomeIcon,
                     onPressed: (() => buttonSelected(0)),
                     isIconSelected: index == 0),
                 MyBarItem(
-                    icon: Icon(Icons.android),
+                    icon: kFriendsIcon,
                     onPressed: (() => buttonSelected(1)),
                     isIconSelected: index == 1),
+
                 MyBarItem(
-                    icon: Icon(Icons.android),
-                    onPressed: (() => buttonSelected(2)),
-                    isIconSelected: index == 2),
+                    icon: kNotificationIcon,
+                    onPressed: (() => buttonSelected(3)),
+                    isIconSelected: index == 3),
+                MyBarItem(
+                    icon: kProfilIcon,
+                    onPressed: (() => buttonSelected(4)),
+                    isIconSelected: index == 4),
+                Container(
+                  width: 50,
+                  height: 0,
+                ), //Une largeur de 50 afin de placer mon floatingActionButton
               ],
             ),
             body: Center(
               child:
                   MyTextButton(data: utilisateur.nom, color: Colors.blueAccent),
             ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: write,
+              child: kWriteIcon,
+              backgroundColor: kPointer,
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
           );
   }
 
@@ -78,4 +92,6 @@ class _StateMainAppController extends State<MainPageController> {
       this.index = index;
     });
   }
+
+  void write() {}
 }

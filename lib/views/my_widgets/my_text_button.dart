@@ -1,20 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyTextButton extends Text {
-  final String data;
+  final String dataText;
   final TextAlign textAlignment;
   final double fontSize;
   final FontStyle fontStyle;
   final Color color;
 
   MyTextButton(
-      {this.data,
+      {this.dataText,
       this.textAlignment = TextAlign.center,
       this.fontStyle = FontStyle.normal,
       this.color = Colors.white,
       this.fontSize = 17.0})
-      : super(data,
+      : super(dataText,
             textAlign: textAlignment,
             style: TextStyle(
                 fontSize: fontSize, fontStyle: fontStyle, color: color));

@@ -7,7 +7,7 @@ class LoadingCenter extends Center {
   LoadingCenter()
       : super(
             child: MyTextButton(
-          data: "chargement...",
+          dataText: "chargement...",
           fontSize: 40.0,
           color: Colors.blueAccent,
         ));

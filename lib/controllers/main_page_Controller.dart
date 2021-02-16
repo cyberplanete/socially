@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/views/my_material.dart';
+import 'package:socially/views/pages/page_fil_actualit%C3%A9s.dart';
+import 'package:socially/views/pages/page_notifications.dart';
+import 'package:socially/views/pages/page_profile.dart';
+import 'package:socially/views/pages/page_utilisateurs_.dart';
 
 class MainPageController extends StatefulWidget {
   String uid;
@@ -46,6 +50,15 @@ class _StateMainAppController extends State<MainPageController> {
     return (utilisateur == null)
         ? MyProgressIndicatorScafold()
         : Scaffold(
+            backgroundColor: kBaseColor,
+            body: afficherPageOnSelectedIcon(),
+            floatingActionButton: FloatingActionButton(
+              onPressed: write,
+              child: kWriteIcon,
+              backgroundColor: kPointer,
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
             key: _globalKey,
             bottomNavigationBar: MyBottomBar(
               barItems: [
@@ -61,29 +74,18 @@ class _StateMainAppController extends State<MainPageController> {
 
                 MyBarItem(
                     icon: kNotificationIcon,
-                    onPressed: (() => buttonSelected(3)),
-                    isIconSelected: index == 3),
+                    onPressed: (() => buttonSelected(2)),
+                    isIconSelected: index == 2),
                 MyBarItem(
                     icon: kProfilIcon,
-                    onPressed: (() => buttonSelected(4)),
-                    isIconSelected: index == 4),
+                    onPressed: (() => buttonSelected(3)),
+                    isIconSelected: index == 3),
                 Container(
                   width: 50,
                   height: 0,
                 ), //Une largeur de 50 afin de placer mon floatingActionButton
               ],
             ),
-            body: Center(
-              child:
-                  MyTextButton(data: utilisateur.nom, color: Colors.blueAccent),
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: write,
-              child: kWriteIcon,
-              backgroundColor: kPointer,
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.endDocked,
           );
   }
 
@@ -94,4 +96,17 @@ class _StateMainAppController extends State<MainPageController> {
   }
 
   void write() {}
+
+  Widget afficherPageOnSelectedIcon() {
+    switch (index) {
+      case 0:
+        return PageFilActualite(utilisateur: utilisateur);
+      case 1:
+        return PageUtilisateurs(utilisateur: utilisateur);
+      case 2:
+        return PageNotifications(utilisateur: utilisateur);
+      default:
+        return PageProfil(utilisateur: utilisateur);
+    }
+  }
 }

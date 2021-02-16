@@ -5,11 +5,11 @@ import 'package:socially/views/my_material.dart';
 class MyAlertBox {
   Future<void> error(BuildContext context, String error) async {
     MyTextButton titre = MyTextButton(
-      data: 'Erreur',
+      dataText: 'Erreur',
       color: Colors.blueAccent,
     );
     MyTextButton sousTitre = MyTextButton(
-      data: error,
+      dataText: error,
       color: Colors.blueAccent,
     );
 
@@ -45,7 +45,7 @@ class MyAlertBox {
         Navigator.pop(buildContext);
       },
       child: MyTextButton(
-        data: texte,
+        dataText: texte,
         color: kPointer,
       ),
     );

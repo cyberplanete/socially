@@ -177,7 +177,7 @@ class _SigninStateController extends State<SigninController> {
                   onPressed: () => seConnecter(index == 0),
                   child: MyTextButton(
                     ///Nom en fonction de l'index de la page
-                    data: (index == 0) ? 'Se connecter' : 'Créer un compte',
+                    dataText: (index == 0) ? 'Se connecter' : 'Créer un compte',
                   ),
                 ),
               ),

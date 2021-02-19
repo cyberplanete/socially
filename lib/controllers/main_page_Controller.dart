@@ -5,6 +5,7 @@ import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/pages/page_fil_actualit%C3%A9s.dart';
+import 'package:socially/views/pages/page_new_post.dart';
 import 'package:socially/views/pages/page_notifications.dart';
 import 'package:socially/views/pages/page_profile.dart';
 import 'package:socially/views/pages/page_utilisateurs_.dart';
@@ -21,6 +22,7 @@ class MainPageController extends StatefulWidget {
 class _StateMainAppController extends State<MainPageController> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   StreamSubscription streamListenner;
+  PersistentBottomSheetController persisitantBottomSheetcontroller;
   Utilisateur utilisateur;
   int index = 0;
   @override
@@ -49,42 +51,47 @@ class _StateMainAppController extends State<MainPageController> {
   Widget build(BuildContext context) {
     return (utilisateur == null)
         ? MyProgressIndicatorScafold()
-        : Scaffold(
-            backgroundColor: kBaseColor,
-            body: afficherPageOnSelectedIcon(),
-            floatingActionButton: FloatingActionButton(
-              onPressed: write,
-              child: kWriteIcon,
-              backgroundColor: kPointer,
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.endDocked,
-            key: _globalKey,
-            bottomNavigationBar: MyBottomBar(
-              barItems: [
-                ///Index est utilisé pour ajouter la couleur du bouton pressé
-                MyBarItem(
-                    icon: kHomeIcon,
-                    onPressed: (() => buttonSelected(0)),
-                    isIconSelected: index == 0),
-                MyBarItem(
-                    icon: kFriendsIcon,
-                    onPressed: (() => buttonSelected(1)),
-                    isIconSelected: index == 1),
+        : SafeArea(
+            child: Scaffold(
+              backgroundColor: kBaseColor,
 
-                MyBarItem(
-                    icon: kNotificationIcon,
-                    onPressed: (() => buttonSelected(2)),
-                    isIconSelected: index == 2),
-                MyBarItem(
-                    icon: kProfilIcon,
-                    onPressed: (() => buttonSelected(3)),
-                    isIconSelected: index == 3),
-                Container(
-                  width: 50,
-                  height: 0,
-                ), //Une largeur de 50 afin de placer mon floatingActionButton
-              ],
+              body: afficherPageOnSelectedIcon(),
+              key: _globalKey,
+              bottomNavigationBar: MyBottomBar(
+                barItems: [
+                  ///Index est utilisé pour ajouter la couleur du bouton pressé
+                  MyBarItem(
+                      icon: kHomeIcon,
+                      onPressed: (() => buttonSelected(0)),
+                      isIconSelected: index == 0),
+                  MyBarItem(
+                      icon: kFriendsIcon,
+                      onPressed: (() => buttonSelected(1)),
+                      isIconSelected: index == 1),
+
+                  MyBarItem(
+                      icon: kNotificationIcon,
+                      onPressed: (() => buttonSelected(2)),
+                      isIconSelected: index == 2),
+                  MyBarItem(
+                      icon: kProfilIcon,
+                      onPressed: (() => buttonSelected(3)),
+                      isIconSelected: index == 3),
+                  Container(
+                    width: 50,
+                    height: 0,
+                  ), //Une largeur de 50 afin de placer mon floatingActionButton
+                ],
+              ),
+
+              ///FloatingActionButton
+              floatingActionButton: FloatingActionButton(
+                onPressed: writePost,
+                child: kWriteIcon,
+                backgroundColor: kPointer,
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.endDocked,
             ),
           );
   }
@@ -95,7 +102,18 @@ class _StateMainAppController extends State<MainPageController> {
     });
   }
 
-  void write() {}
+  ///Quand mon floating bouton est pressé, je verifie la page PageNewPost est visible.
+  /// Si visible (persisitantBottomSheetcontroller n'est pas null) je ferme la page
+  /// et j'initialise  persisitantBottomSheetcontroller a null ainsi permettant une ouverture fermeture de la page PageNewPost
+  void writePost() {
+    if (persisitantBottomSheetcontroller != null) {
+      persisitantBottomSheetcontroller.close();
+      persisitantBottomSheetcontroller = null;
+    } else {
+      persisitantBottomSheetcontroller =
+          _globalKey.currentState.showBottomSheet((context) => PageNewPost());
+    }
+  }
 
   Widget afficherPageOnSelectedIcon() {
     switch (index) {

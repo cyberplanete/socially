@@ -27,3 +27,6 @@ Icon kFriendsIcon = Icon(Icons.group);
 Icon kNotificationIcon = Icon(Icons.notifications);
 Icon kProfilIcon = Icon(Icons.account_circle);
 Icon kWriteIcon = Icon(Icons.border_color);
+Icon kSendIcon = Icon(Icons.send);
+Icon kCamIcon = Icon(Icons.camera_enhance);
+Icon kLibraryIcon = Icon(Icons.photo_library);

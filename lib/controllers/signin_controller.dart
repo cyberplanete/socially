@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/useful/alert_box.dart';
 import 'package:socially/views/my_material.dart';
+import 'package:socially/views/my_widgets/my_button_gradient.dart';
 
 class SigninController extends StatefulWidget {
   _SigninStateController createState() => _SigninStateController();
@@ -121,6 +122,7 @@ class _SigninStateController extends State<SigninController> {
   }
 
   ///Se positionne dessous les boutons - Affiche les vues contenant des textfields permettant la connexion ou la creation du compte
+  ///l'index 0 est pour un utilisateur deja enregistré
   Widget viewSignIn(int index) {
     return Column(
       children: [
@@ -160,27 +162,10 @@ class _SigninStateController extends State<SigninController> {
         MyPaddingCustomWith(
             top: 15,
             bottom: 15,
-            unWidget: Card(
-              elevation: 7.5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0),
-              ),
-              child: Container(
-                width: 300,
-                height: 50,
-                decoration: MyGradientColorWidgetBoxDecoration(
-                    startColor: kBaseColor,
-                    endColor: kBaseAccent,
-                    radius: 25,
-                    isHorizontal: true),
-                child: FlatButton(
-                  onPressed: () => seConnecter(index == 0),
-                  child: MyTextButton(
-                    ///Nom en fonction de l'index de la page
-                    dataText: (index == 0) ? 'Se connecter' : 'Créer un compte',
-                  ),
-                ),
-              ),
+            unWidget: MyButtonGradient(
+              callback: (() => seConnecter(index == 0)),
+              /////Nom en fonction de l'index de la page
+              texte: (index == 0) ? 'Se connecter' : 'Créer un compte',
             ))
       ],
     );

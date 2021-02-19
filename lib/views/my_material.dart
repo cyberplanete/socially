@@ -4,6 +4,7 @@ export 'my_widgets/constants.dart';
 export 'my_widgets/my_bar_items.dart';
 export 'my_widgets/my_bottom_bar.dart';
 export 'my_widgets/my_bottom_bar.dart';
+export 'my_widgets/my_button_gradient.dart';
 export 'my_widgets/my_custom_paint.dart';
 export 'my_widgets/my_gradient.dart';
 export 'my_widgets/my_loading_Center.dart';

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:socially/views/my_material.dart';
 
 class PageNewPost extends StatefulWidget {
@@ -8,6 +11,7 @@ class PageNewPost extends StatefulWidget {
 
 class _PageNewPost extends State<PageNewPost> {
   TextEditingController _textEditingController;
+  File imagePrise;
 
   @override
   void initState() {
@@ -58,11 +62,47 @@ class _PageNewPost extends State<PageNewPost> {
                 top: 25.0,
                 right: 25.0,
                 left: 25.0,
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      IconButton(
+                          icon: kCamIcon,
+
+                          ///Prendre une photo depuis la camera
+                          onPressed: (() =>
+                              prendreUnePhoto(ImageSource.camera))),
+                      IconButton(
+                          icon: kLibraryIcon,
+
+                          ///Prendre une photo depuis la gallery
+                          onPressed: (() =>
+                              prendreUnePhoto(ImageSource.gallery)))
+                    ],
+                  ),
+                  Container(
+                      width: 75.0,
+                      height: 75.0,
+                      child: (imagePrise == null)
+                          ? MyTextButton(
+                              dataText: "Aucune image",
+                              fontSize: 13.0,
+                              color: kBaseAccent)
+                          : Image.file(imagePrise))
+                ],
+              ),
+              MyButtonGradient(
+                  callback: envoyerVersFirebase(), texte: "Envoyer")
             ],
           ),
         ),
       ),
     );
   }
+
+  Future<void> prendreUnePhoto(ImageSource camera) async {}
+
+  envoyerVersFirebase() {}
 }

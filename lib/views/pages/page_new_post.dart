@@ -11,7 +11,7 @@ class PageNewPost extends StatefulWidget {
 
 class _PageNewPost extends State<PageNewPost> {
   TextEditingController _textEditingController;
-  File imagePrise;
+  PickedFile imagePrise;
 
   @override
   void initState() {
@@ -90,7 +90,10 @@ class _PageNewPost extends State<PageNewPost> {
                               dataText: "Aucune image",
                               fontSize: 13.0,
                               color: kBaseAccent)
-                          : Image.file(imagePrise))
+                          : Semantics(
+                              child: Image.file(File(imagePrise.path)),
+                              label: 'tets',
+                            ))
                 ],
               ),
               MyButtonGradient(
@@ -102,7 +105,13 @@ class _PageNewPost extends State<PageNewPost> {
     );
   }
 
-  Future<void> prendreUnePhoto(ImageSource camera) async {}
+  Future<void> prendreUnePhoto(ImageSource camera) async {
+    final PickedFile photo = await ImagePicker()
+        .getImage(source: camera, maxWidth: 500.0, maxHeight: 500.0);
+    setState(() {
+      imagePrise = photo;
+    });
+  }
 
   envoyerVersFirebase() {}
 }

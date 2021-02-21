@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:socially/views/my_material.dart';
 
 class FireStoreLogique {
@@ -51,6 +54,19 @@ class FireStoreLogique {
     fireStore_collectionOfUSers.doc(uid).set(map);
   }
 
-  ///Storage
+  ///Stockage - Dossier utilisateurs et dossier posts
+  static final stockageInstance = FirebaseStorage.instance.ref();
+  final stockageUitilisateur = stockageInstance.child("utilisateurs");
+  final stockagePosts = stockageInstance.child("posts");
 
+  ///Methode permettant d'ajouter une photo - Creation d'une tache d'upload du fichier puis quand cette tache est terminée, je recupère le lien de téléchargement
+  Future<String> ajouterPhoto(File file, Reference ref) async {
+    String url;
+    //Creation d'une tache d'upload du fichier
+    UploadTask uploadTask = ref.putFile(file);
+    //Quand cette tache est terminée, je recupère le lien de téléchargement
+    uploadTask.whenComplete(() async => url =
+        await ref.getDownloadURL().catchError((onError) => print(onError)));
+    return url;
+  }
 }

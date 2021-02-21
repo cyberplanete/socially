@@ -113,5 +113,12 @@ class _PageNewPost extends State<PageNewPost> {
     });
   }
 
-  envoyerVersFirebase() {}
+  ///Methode permettant d'envoyer des données vers firebaseStorage - photo et/ou texte.
+  envoyerVersFirebase() {
+    FocusScope.of(context).requestFocus(FocusNode());
+    //Je verifie si imagePrise est different de null ainsi que la zone de texte
+    if (imagePrise != null &&
+        _textEditingController.text != null &&
+        _textEditingController.text != "") {}
+  }
 }

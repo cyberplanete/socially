@@ -26,20 +26,20 @@ class FireStoreLogique {
         .createUserWithEmailAndPassword(email: email, password: pwd);
 
     ///Créer mon utilisateur pour l'ajouter dans la bdd
-    String uid = userCredential.user.uid;
+    String utilisateurId = userCredential.user.uid;
     List<dynamic> listAbonnes = [];
 
-    ///j'ajoute l"uid de l'utilisateur par défaut afin qu'il puisse suivre les posts écris par l'utilisateur
-    List<dynamic> abonnementList = [uid];
+    ///j'ajoute l"utilisateurId de l'utilisateur par défaut afin qu'il puisse suivre les posts écris par lui meme.
+    List<dynamic> abonnementList = [utilisateurId];
     Map<String, dynamic> map = {
       cKeyNom: nom,
       ckeyPrenom: prenom,
       cKeyImageUrl: "",
       cKeyAbonnes: listAbonnes,
       cKeyAbonnementList: abonnementList,
-      cKeyUtilisateurId: uid
+      cKeyUtilisateurId: utilisateurId
     };
-    ajouterUtilisateur(uid, map);
+    ajouterUtilisateur(utilisateurId, map);
     return userCredential.user;
   }
 
@@ -68,5 +68,42 @@ class FireStoreLogique {
     uploadTask.whenComplete(() async => url =
         await ref.getDownloadURL().catchError((onError) => print(onError)));
     return url;
+  }
+
+  ajouterPost({String utilisateurId, String texte, File photo}) {
+    int date = DateTime.now().millisecondsSinceEpoch.toInt();
+    List<dynamic> listDelikes = [];
+    List<dynamic> listDeCommentaires = [];
+    Map<String, dynamic> unPost = {
+      cKeyUtilisateurId: utilisateurId,
+      cKeyLikes: listDelikes,
+      cKeyCommentaires: listDeCommentaires,
+      cKeyDate: DateTime.now().millisecondsSinceEpoch.toInt(),
+    };
+    if (texte != null && texte != "") {
+      unPost[cKeyTexte] = texte;
+    }
+    //Je cree une collection pour un 'post ' lié à un utilisateur qui contiendra une photo
+    if (photo != null) {
+      //Stockage sous le dossier utilisateur et classé par date
+      Reference referenceStockage =
+          stockagePosts.child(utilisateurId).child(date.toString());
+      ajouterPhoto(photo, referenceStockage).then((finalised) {
+        String imageUrl = finalised;
+        unPost[cKeyImageUrl] = imageUrl;
+        fireStore_collectionOfUSers
+            .doc(utilisateurId)
+            .collection("posts")
+            .doc()
+            .set(unPost);
+      });
+    } else {
+      //Dans tous les cas je cree une collection pour un 'post ' lié à un utilisateur.
+      fireStore_collectionOfUSers
+          .doc(utilisateurId)
+          .collection("posts")
+          .doc()
+          .set(unPost);
+    }
   }
 }

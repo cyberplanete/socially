@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/views/my_material.dart';
 
 class PageNewPost extends StatefulWidget {
@@ -11,7 +12,7 @@ class PageNewPost extends StatefulWidget {
 
 class _PageNewPost extends State<PageNewPost> {
   TextEditingController _textEditingController;
-  PickedFile imagePrise;
+  File imagePrise;
 
   @override
   void initState() {
@@ -109,7 +110,7 @@ class _PageNewPost extends State<PageNewPost> {
     final PickedFile photo = await ImagePicker()
         .getImage(source: camera, maxWidth: 500.0, maxHeight: 500.0);
     setState(() {
-      imagePrise = photo;
+      imagePrise = photo as File;
     });
   }
 
@@ -119,6 +120,11 @@ class _PageNewPost extends State<PageNewPost> {
     //Je verifie si imagePrise est different de null ainsi que la zone de texte
     if (imagePrise != null &&
         _textEditingController.text != null &&
-        _textEditingController.text != "") {}
+        _textEditingController.text != "") {
+      FireStoreLogique().ajouterPost(
+          utilisateurId: cUtilisateur.uid,
+          texte: _textEditingController.text,
+          photo: imagePrise);
+    }
   }
 }

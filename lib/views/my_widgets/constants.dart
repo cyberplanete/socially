@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:socially/models/utilisateurs.dart';
 
+///Utilisateur global
+Utilisateur cUtilisateur;
+
+///couleurs
 const Color cWhite = const Color(0xffffffff);
 const Color cBaseColor = const Color(0xff42a5f5);
 const Color cBaseAccent = const Color(0xff1976d2);

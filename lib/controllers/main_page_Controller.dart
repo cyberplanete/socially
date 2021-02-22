@@ -23,7 +23,7 @@ class _StateMainAppController extends State<MainPageController> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   StreamSubscription streamListenner;
   PersistentBottomSheetController persisitantBottomSheetcontroller;
-  Utilisateur utilisateur;
+
   int index = 0;
   @override
   void initState() {
@@ -32,11 +32,11 @@ class _StateMainAppController extends State<MainPageController> {
         .fireStore_collectionOfUSers
         .doc(widget.uid)
         .snapshots()
-        .listen((event) {
+        .listen((document) {
       //print(event.data());
       setState(() {
-        utilisateur = Utilisateur(event);
-        print(utilisateur.nom);
+        cUtilisateur = Utilisateur(document);
+        print(cUtilisateur.nom);
       });
     });
   }
@@ -49,7 +49,7 @@ class _StateMainAppController extends State<MainPageController> {
 
   @override
   Widget build(BuildContext context) {
-    return (utilisateur == null)
+    return (cUtilisateur == null)
         ? MyProgressIndicatorScafold()
         : SafeArea(
             child: Scaffold(
@@ -61,6 +61,7 @@ class _StateMainAppController extends State<MainPageController> {
                 barItems: [
                   ///Index est utilisé pour ajouter la couleur du bouton pressé
                   MyBarItem(
+                      //Si un index est = à la valeur du bouton selectionné alors la couleur de celui-ci est modifié
                       icon: cHomeIcon,
                       onPressed: (() => buttonSelected(0)),
                       isIconSelected: index == 0),
@@ -118,13 +119,13 @@ class _StateMainAppController extends State<MainPageController> {
   Widget afficherPageOnSelectedIcon() {
     switch (index) {
       case 0:
-        return PageFilActualite(utilisateur: utilisateur);
+        return PageFilActualite(utilisateur: cUtilisateur);
       case 1:
-        return PageUtilisateurs(utilisateur: utilisateur);
+        return PageUtilisateurs(utilisateur: cUtilisateur);
       case 2:
-        return PageNotifications(utilisateur: utilisateur);
+        return PageNotifications(utilisateur: cUtilisateur);
       default:
-        return PageProfil(utilisateur: utilisateur);
+        return PageProfil(utilisateur: cUtilisateur);
     }
   }
 }

@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 
-const Color kWhite = const Color(0xffffffff);
-const Color kBaseColor = const Color(0xff42a5f5);
-const Color kBaseAccent = const Color(0xff1976d2);
-const Color kPointer = const Color(0xfff44336);
+const Color cWhite = const Color(0xffffffff);
+const Color cBaseColor = const Color(0xff42a5f5);
+const Color cBaseAccent = const Color(0xff1976d2);
+const Color cPointer = const Color(0xfff44336);
 
 ///Images
-AssetImage kLogoImage = AssetImage('assets/logo.png');
-AssetImage kHomeImage = AssetImage('assets/home.jpg');
-AssetImage kProfileImage = AssetImage('assets/profile.jpg');
-AssetImage kEventImage = AssetImage('assets/event.jpg');
-AssetImage kLogoWhiteImage = AssetImage('assets/logoWhite.png');
+AssetImage cLogoImage = AssetImage('assets/logo.png');
+AssetImage cHomeImage = AssetImage('assets/home.jpg');
+AssetImage cProfileImage = AssetImage('assets/profile.jpg');
+AssetImage cEventImage = AssetImage('assets/event.jpg');
+AssetImage cLogoWhiteImage = AssetImage('assets/logoWhite.png');
 
-///Database Firestore
+///Database Firestore - Clés
 
-String kNom = "nom";
-String kPrenom = "prenom";
-String kImageUrl = "imageUrl";
-String kAbonnes = "abonnees";
-String kAbonnementList = "adherents";
-String kUid = "uid";
+String cKeyNom = "nom";
+String ckeyPrenom = "prenom";
+String cKeyImageUrl = "imageUrl";
+String cKeyAbonnes = "abonnees";
+String cKeyAbonnementList = "adherents";
+String cKeyUtilisateurId = "uid";
+String cKeyPostId = "postID";
+String cKeyTexte = "texte";
+String cKeyDate = "date";
+String cKeyLikes = "likes";
+String cKeyCommentaires = " commentaires";
 
 ///Icons
-Icon kHomeIcon = Icon(Icons.home);
-Icon kFriendsIcon = Icon(Icons.group);
-Icon kNotificationIcon = Icon(Icons.notifications);
-Icon kProfilIcon = Icon(Icons.account_circle);
-Icon kWriteIcon = Icon(Icons.border_color);
-Icon kSendIcon = Icon(Icons.send);
-Icon kCamIcon = Icon(Icons.camera_enhance);
-Icon kLibraryIcon = Icon(Icons.photo_library);
+Icon cHomeIcon = Icon(Icons.home);
+Icon cFriendsIcon = Icon(Icons.group);
+Icon cNotificationIcon = Icon(Icons.notifications);
+Icon cProfilIcon = Icon(Icons.account_circle);
+Icon cWriteIcon = Icon(Icons.border_color);
+Icon cSendIcon = Icon(Icons.send);
+Icon cCamIcon = Icon(Icons.camera_enhance);
+Icon cLibraryIcon = Icon(Icons.photo_library);

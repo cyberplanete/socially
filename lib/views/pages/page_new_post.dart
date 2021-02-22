@@ -28,11 +28,11 @@ class _PageNewPost extends State<PageNewPost> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kBaseColor,
+      color: cBaseColor,
       height: MediaQuery.of(context).size.height * 0.6,
       child: Container(
         decoration: BoxDecoration(
-            color: kWhite,
+            color: cWhite,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: InkWell(
@@ -43,21 +43,21 @@ class _PageNewPost extends State<PageNewPost> {
               MyPaddingCustomWith(
                   unWidget: MyTextButton(
                 dataText: "Ecrire un post",
-                color: kBaseAccent,
+                color: cBaseAccent,
                 fontSize: 25.0,
               )),
               MyPaddingCustomWith(
                   unWidget: Container(
                 ///je cree ce container permettant d'élargir ma bottomsheet sur toute la largeur de l'écran et ajouter une ligne de séparation
                 width: MediaQuery.of(context).size.width, height: 1.0,
-                color: kBaseAccent,
+                color: cBaseAccent,
               )),
               MyPaddingCustomWith(
                 unWidget: MyTextField(
                   textInputType: TextInputType.text,
                   textEditingController: _textEditingController,
                   hintText: "Exprimez-vous",
-                  icon: kWriteIcon,
+                  icon: cWriteIcon,
                 ),
                 top: 25.0,
                 right: 25.0,
@@ -69,13 +69,13 @@ class _PageNewPost extends State<PageNewPost> {
                   Column(
                     children: [
                       IconButton(
-                          icon: kCamIcon,
+                          icon: cCamIcon,
 
                           ///Prendre une photo depuis la camera
                           onPressed: (() =>
                               prendreUnePhoto(ImageSource.camera))),
                       IconButton(
-                          icon: kLibraryIcon,
+                          icon: cLibraryIcon,
 
                           ///Prendre une photo depuis la gallery
                           onPressed: (() =>
@@ -89,7 +89,7 @@ class _PageNewPost extends State<PageNewPost> {
                           ? MyTextButton(
                               dataText: "Aucune image",
                               fontSize: 13.0,
-                              color: kBaseAccent)
+                              color: cBaseAccent)
                           : Semantics(
                               child: Image.file(File(imagePrise.path)),
                               label: 'tets',

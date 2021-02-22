@@ -46,7 +46,7 @@ class MyAlertBox {
       },
       child: MyTextButton(
         dataText: texte,
-        color: kPointer,
+        color: cPointer,
       ),
     );
   }

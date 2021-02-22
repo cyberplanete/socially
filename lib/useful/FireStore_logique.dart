@@ -32,12 +32,12 @@ class FireStoreLogique {
     ///j'ajoute l"uid de l'utilisateur par défaut afin qu'il puisse suivre les posts écris par l'utilisateur
     List<dynamic> abonnementList = [uid];
     Map<String, dynamic> map = {
-      kNom: nom,
-      kPrenom: prenom,
-      kImageUrl: "",
-      kAbonnes: listAbonnes,
-      kAbonnementList: abonnementList,
-      kUid: uid
+      cKeyNom: nom,
+      ckeyPrenom: prenom,
+      cKeyImageUrl: "",
+      cKeyAbonnes: listAbonnes,
+      cKeyAbonnementList: abonnementList,
+      cKeyUtilisateurId: uid
     };
     ajouterUtilisateur(uid, map);
     return userCredential.user;

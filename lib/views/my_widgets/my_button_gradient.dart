@@ -21,8 +21,8 @@ class MyButtonGradient extends Card {
             width: width,
             height: height,
             decoration: MyGradientColorWidgetBoxDecoration(
-                startColor: kBaseColor,
-                endColor: kBaseAccent,
+                startColor: cBaseColor,
+                endColor: cBaseAccent,
                 radius: 25,
                 isHorizontal: true),
             child: FlatButton(

@@ -79,8 +79,8 @@ class _SigninStateController extends State<SigninController> {
             decoration: MyGradientColorWidgetBoxDecoration(
 
                 ///Pour dégradé horizontal isHorizontal doit être sur true
-                startColor: kBaseColor,
-                endColor: kBaseAccent,
+                startColor: cBaseColor,
+                endColor: cBaseAccent,
                 isHorizontal: false),
             child: SafeArea(
               child: Column(
@@ -88,7 +88,7 @@ class _SigninStateController extends State<SigninController> {
                   ///Position de mon logo
                   MyPaddingCustomWith(
                     unWidget: Image(
-                      image: kLogoWhiteImage,
+                      image: cLogoWhiteImage,
                       height: 100,
                     ),
                   ),
@@ -137,7 +137,7 @@ class _SigninStateController extends State<SigninController> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ),
-            color: kWhite,
+            color: cWhite,
             elevation: 7,
 
             ///Card invisible si pas de child !!!

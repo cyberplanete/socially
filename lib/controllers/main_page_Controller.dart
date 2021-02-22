@@ -53,7 +53,7 @@ class _StateMainAppController extends State<MainPageController> {
         ? MyProgressIndicatorScafold()
         : SafeArea(
             child: Scaffold(
-              backgroundColor: kBaseColor,
+              backgroundColor: cBaseColor,
 
               body: afficherPageOnSelectedIcon(),
               key: _globalKey,
@@ -61,20 +61,20 @@ class _StateMainAppController extends State<MainPageController> {
                 barItems: [
                   ///Index est utilisé pour ajouter la couleur du bouton pressé
                   MyBarItem(
-                      icon: kHomeIcon,
+                      icon: cHomeIcon,
                       onPressed: (() => buttonSelected(0)),
                       isIconSelected: index == 0),
                   MyBarItem(
-                      icon: kFriendsIcon,
+                      icon: cFriendsIcon,
                       onPressed: (() => buttonSelected(1)),
                       isIconSelected: index == 1),
 
                   MyBarItem(
-                      icon: kNotificationIcon,
+                      icon: cNotificationIcon,
                       onPressed: (() => buttonSelected(2)),
                       isIconSelected: index == 2),
                   MyBarItem(
-                      icon: kProfilIcon,
+                      icon: cProfilIcon,
                       onPressed: (() => buttonSelected(3)),
                       isIconSelected: index == 3),
                   Container(
@@ -87,8 +87,8 @@ class _StateMainAppController extends State<MainPageController> {
               ///FloatingActionButton
               floatingActionButton: FloatingActionButton(
                 onPressed: writePost,
-                child: kWriteIcon,
-                backgroundColor: kPointer,
+                child: cWriteIcon,
+                backgroundColor: cPointer,
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.endDocked,

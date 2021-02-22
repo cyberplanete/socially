@@ -15,22 +15,22 @@ class Utilisateur {
     Map<String, dynamic> map = documentSnapshot.data();
     this.documentReference = documentSnapshot.reference;
     this.documentId = documentSnapshot.id;
-    this.uid = map[kUid];
-    this.nom = map[kNom];
-    this.prenom = map[kPrenom];
-    this.abonnesList = map[kAbonnes];
-    this.abonnementList = map[kAbonnementList];
-    this.imageUrl = map[kImageUrl];
+    this.uid = map[cKeyUtilisateurId];
+    this.nom = map[cKeyNom];
+    this.prenom = map[ckeyPrenom];
+    this.abonnesList = map[cKeyAbonnes];
+    this.abonnementList = map[cKeyAbonnementList];
+    this.imageUrl = map[cKeyImageUrl];
   }
 
   Map<String, dynamic> toMap() {
     return {
-      kUid: uid,
-      kNom: nom,
-      kPrenom: prenom,
-      kAbonnes: abonnesList,
-      kAbonnementList: abonnementList,
-      kImageUrl: imageUrl,
+      cKeyUtilisateurId: uid,
+      cKeyNom: nom,
+      ckeyPrenom: prenom,
+      cKeyAbonnes: abonnesList,
+      cKeyAbonnementList: abonnementList,
+      cKeyImageUrl: imageUrl,
     };
   }
 }

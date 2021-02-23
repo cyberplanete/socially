@@ -4,6 +4,9 @@ import 'package:socially/models/utilisateurs.dart';
 ///Utilisateur global
 Utilisateur cUtilisateur;
 
+///showBottomSheet
+bool cIsSheetOpen = false;
+
 ///couleurs
 const Color cWhite = const Color(0xffffffff);
 const Color cBaseColor = const Color(0xff42a5f5);

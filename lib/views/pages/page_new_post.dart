@@ -7,13 +7,17 @@ import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/views/my_material.dart';
 
 class PageNewPost extends StatefulWidget {
+  PageNewPost();
+
   createState() => _PageNewPost();
 }
 
 class _PageNewPost extends State<PageNewPost> {
   TextEditingController _textEditingController;
   File imagePrise;
+  final GlobalKey<_PageNewPost> _globalKey = new GlobalKey<_PageNewPost>();
 
+  _PageNewPost();
   @override
   void initState() {
     super.initState();
@@ -29,6 +33,7 @@ class _PageNewPost extends State<PageNewPost> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: _globalKey,
       color: cBaseColor,
       height: MediaQuery.of(context).size.height * 0.6,
       child: Container(
@@ -97,8 +102,7 @@ class _PageNewPost extends State<PageNewPost> {
                             ))
                 ],
               ),
-              MyButtonGradient(
-                  callback: envoyerVersFirebase(), texte: "Envoyer")
+              MyButtonGradient(callback: envoyerVersFirebase, texte: "Envoyer")
             ],
           ),
         ),
@@ -118,13 +122,18 @@ class _PageNewPost extends State<PageNewPost> {
   envoyerVersFirebase() {
     FocusScope.of(context).requestFocus(FocusNode());
     //Je verifie si imagePrise est different de null ainsi que la zone de texte
-    if (imagePrise != null &&
-        _textEditingController.text != null &&
-        _textEditingController.text != "") {
+    Navigator.of(context).pop();
+    if (imagePrise != null ||
+        (_textEditingController.text != null &&
+            _textEditingController.text != "")) {
       FireStoreLogique().ajouterPost(
           utilisateurId: cUtilisateur.uid,
           texte: _textEditingController.text,
           photo: imagePrise);
+
+      cIsSheetOpen = false;
+
+      //
     }
   }
 }

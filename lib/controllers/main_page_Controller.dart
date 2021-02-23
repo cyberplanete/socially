@@ -107,25 +107,28 @@ class _StateMainAppController extends State<MainPageController> {
   /// Si visible (persisitantBottomSheetcontroller n'est pas null) je ferme la page
   /// et j'initialise  persisitantBottomSheetcontroller a null ainsi permettant une ouverture fermeture de la page PageNewPost
   void writePost() {
-    if (persisitantBottomSheetcontroller != null) {
-      persisitantBottomSheetcontroller.close();
-      persisitantBottomSheetcontroller = null;
-    } else {
+    if (!cIsSheetOpen) {
       persisitantBottomSheetcontroller =
           _globalKey.currentState.showBottomSheet((context) => PageNewPost());
+      cIsSheetOpen = true;
+    } else {
+      Navigator.of(context).pop();
+      //   persisitantBottomSheetcontroller.close();
+      //   persisitantBottomSheetcontroller = null;
+      cIsSheetOpen = false;
     }
   }
 
   Widget afficherPageOnSelectedIcon() {
     switch (index) {
       case 0:
-        return PageFilActualite(utilisateur: cUtilisateur);
+        return PageFilActualite();
       case 1:
-        return PageUtilisateurs(utilisateur: cUtilisateur);
+        return PageUtilisateurs();
       case 2:
-        return PageNotifications(utilisateur: cUtilisateur);
+        return PageNotifications();
       default:
-        return PageProfil(utilisateur: cUtilisateur);
+        return PageProfil();
     }
   }
 }

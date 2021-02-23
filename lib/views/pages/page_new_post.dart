@@ -114,7 +114,7 @@ class _PageNewPost extends State<PageNewPost> {
     final PickedFile photo = await ImagePicker()
         .getImage(source: camera, maxWidth: 500.0, maxHeight: 500.0);
     setState(() {
-      imagePrise = photo as File;
+      imagePrise = File(photo.path);
     });
   }
 

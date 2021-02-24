@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyTextButton extends Text {
+class MyText extends Text {
   final String dataText;
   final TextAlign textAlignment;
   final double fontSize;
   final FontStyle fontStyle;
   final Color color;
 
-  MyTextButton(
+  MyText(
       {this.dataText,
       this.textAlignment = TextAlign.center,
       this.fontStyle = FontStyle.normal,

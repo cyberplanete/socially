@@ -13,7 +13,7 @@ class _PageUtilisateur extends State<PageUtilisateurs> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: MyTextButton(
+      child: MyText(
         dataText: "Liste utilisateur",
       ),
     );

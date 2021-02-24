@@ -27,7 +27,7 @@ class MyButtonGradient extends Card {
                 isHorizontal: true),
             child: FlatButton(
               onPressed: callback,
-              child: MyTextButton(dataText: texte),
+              child: MyText(dataText: texte),
             ),
           ),
         );

@@ -4,11 +4,11 @@ import 'package:socially/views/my_material.dart';
 
 class MyAlertBox {
   Future<void> error(BuildContext context, String error) async {
-    MyTextButton titre = MyTextButton(
+    MyText titre = MyText(
       dataText: 'Erreur',
       color: Colors.blueAccent,
     );
-    MyTextButton sousTitre = MyTextButton(
+    MyText sousTitre = MyText(
       dataText: error,
       color: Colors.blueAccent,
     );
@@ -44,7 +44,7 @@ class MyAlertBox {
       onPressed: () {
         Navigator.pop(buildContext);
       },
-      child: MyTextButton(
+      child: MyText(
         dataText: texte,
         color: cPointer,
       ),

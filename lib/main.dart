@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  /// Si le snapshot de mon stream hasdata, je redirige l'utilisateur vers mainAppController,dans le cas contraire vers SigninController
   Widget _isUserConnected() {
     return StreamBuilder<User>(
       ///S'abonner au stream changement d'authentification pour observer les informations de connections: signin signout

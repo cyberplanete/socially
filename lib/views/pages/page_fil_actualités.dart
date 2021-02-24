@@ -15,7 +15,7 @@ class _PageFilActualiteState extends State<PageFilActualite> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: MyTextButton(
+      child: MyText(
         dataText: "Page Fil Actualite",
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:socially/models/utilisateurs.dart';
-import 'package:socially/views/my_widgets/my_text_button.dart';
+import 'package:socially/views/my_widgets/my_text_widget.dart';
 
 class PageNotifications extends StatefulWidget {
   Utilisateur utilisateur;
@@ -14,7 +14,7 @@ class _PageNotificationsState extends State<PageNotifications> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: MyTextButton(
+        child: MyText(
       dataText: "NotificationPage",
     ));
   }

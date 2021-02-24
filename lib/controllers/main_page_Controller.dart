@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:socially/controllers/FireStore_controller.dart';
 import 'package:socially/models/utilisateurs.dart';
-import 'package:socially/useful/FireStore_logique.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/pages/page_fil_actualit%C3%A9s.dart';
 import 'package:socially/views/pages/page_new_post.dart';
@@ -128,7 +128,7 @@ class _StateMainAppController extends State<MainPageController> {
       case 2:
         return PageNotifications();
       default:
-        return PageProfil();
+        return PageProfil(utilisateur: cUtilisateur);
     }
   }
 }

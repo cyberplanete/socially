@@ -17,16 +17,21 @@ class _PageProfilState extends State<PageProfil> {
   bool isProfilUserConnectedUser;
   ScrollController _scrollController;
   var silverBarExpandedHeight = 200.0;
-  bool get _showTitle {
+
+  /// Si IsScrolled true ou false - Le nom et prenom sera affiché soit dans SliverAppBar ou SliverPersistentHeader
+  bool get _showTitleIf {
     return _scrollController.hasClients &&
-        _scrollController.offset > silverBarExpandedHeight - kToolbarHeight;
+        _scrollController.offset > (silverBarExpandedHeight - kToolbarHeight);
   }
 
   @override
   void initState() {
     super.initState();
     isProfilUserConnectedUser = (widget.utilisateur.uid == cUtilisateur.uid);
-    _scrollController = ScrollController();
+    _scrollController = ScrollController()
+      ..addListener(() {
+        setState(() {});
+      });
   }
 
   @override
@@ -54,20 +59,29 @@ class _PageProfilState extends State<PageProfil> {
                 actions: [],
                 flexibleSpace: FlexibleSpaceBar(
                   title: MyText(
-                    dataText: widget.utilisateur.nom,
+                    // Afin que le nom et prenom apparaissent.. j'ai ajouter un addListener à mon controller puis setState
+                    dataText: _showTitleIf
+                        ? widget.utilisateur.prenom +
+                            " " +
+                            widget.utilisateur.nom
+                        : "",
                   ),
                   background: Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: cProfileImage, fit: BoxFit.cover)),
-                  ),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: cProfileImage, fit: BoxFit.cover)),
+                      child: Center(
+                          child: MyProfileImage(
+                              taille: 75.0,
+                              onPressed: null,
+                              urlString: widget.utilisateur.imageUrl))),
                 ),
               ),
               SliverPersistentHeader(
                   delegate: Myheader(
                       utilisateur: widget.utilisateur,
                       voidCallback: null,
-                      isScrolled: _showTitle),
+                      isScrolled: _showTitleIf),
                   pinned: true),
               SliverList(delegate:
                   SliverChildBuilderDelegate((BuildContext context, index) {

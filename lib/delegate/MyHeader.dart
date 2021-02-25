@@ -17,9 +17,23 @@ class Myheader extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-        margin: EdgeInsets.only(bottom: 5.0),
-        padding: EdgeInsets.all(10.0),
-        color: cBaseAccent);
+      margin: EdgeInsets.only(bottom: 5.0),
+      padding: EdgeInsets.all(10.0),
+      color: cBaseAccent,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          isScrolled
+              ? Container(
+                  width: 0.0,
+                  height: 0.0,
+                )
+              : MyText(
+                  dataText: "${utilisateur.prenom} ${utilisateur.nom}",
+                )
+        ],
+      ),
+    );
   }
 
   @override

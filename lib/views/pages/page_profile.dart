@@ -18,7 +18,7 @@ class _PageProfilState extends State<PageProfil> {
   ScrollController _scrollController;
   var silverBarExpandedHeight = 200.0;
 
-  /// Si IsScrolled true ou false - Le nom et prenom sera affiché soit dans SliverAppBar ou SliverPersistentHeader
+  /// Si IsScrolled true ou false - Le nom et prenom sera affiché soit dans SliverAppBar(FlexibleSpace) ou SliverPersistentHeader
   bool get _showTitleIf {
     return _scrollController.hasClients &&
         _scrollController.offset > (silverBarExpandedHeight - kToolbarHeight);
@@ -30,7 +30,9 @@ class _PageProfilState extends State<PageProfil> {
     isProfilUserConnectedUser = (widget.utilisateur.uid == cUtilisateur.uid);
     _scrollController = ScrollController()
       ..addListener(() {
-        setState(() {});
+        setState(() {
+          print('scrolling');
+        });
       });
   }
 
@@ -59,13 +61,12 @@ class _PageProfilState extends State<PageProfil> {
                 actions: [],
                 flexibleSpace: FlexibleSpaceBar(
                   title: MyText(
-                    // Afin que le nom et prenom apparaissent.. j'ai ajouter un addListener à mon controller puis setState
-                    dataText: _showTitleIf
-                        ? widget.utilisateur.prenom +
-                            " " +
-                            widget.utilisateur.nom
-                        : "",
-                  ),
+                      // Afin que le nom et prenom apparaissent.. j'ai ajouter un addListener à mon controller puis setState
+                      dataText: _showTitleIf
+                          ? widget.utilisateur.prenom +
+                              " " +
+                              widget.utilisateur.nom
+                          : ""),
                   background: Container(
                       decoration: BoxDecoration(
                           image: DecorationImage(
@@ -78,7 +79,7 @@ class _PageProfilState extends State<PageProfil> {
                 ),
               ),
               SliverPersistentHeader(
-                  delegate: Myheader(
+                  delegate: MyHeaderSliverPersistent(
                       utilisateur: widget.utilisateur,
                       voidCallback: null,
                       isScrolled: _showTitleIf),

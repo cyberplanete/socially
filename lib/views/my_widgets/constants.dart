@@ -33,6 +33,7 @@ String cKeyTexte = "texte";
 String cKeyDate = "date";
 String cKeyLikes = "likes";
 String cKeyCommentaires = " commentaires";
+String cKeyDescription = "description";
 
 ///Icons
 Icon cHomeIcon = Icon(Icons.home);

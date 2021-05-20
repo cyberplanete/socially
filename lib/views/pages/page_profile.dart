@@ -3,11 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:socially/controllers/FireStore_controller.dart';
 import 'package:socially/delegate/MyHeader.dart';
+import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
+import 'package:socially/views/tiles/PostTile.dart';
 
 class PageProfil extends StatefulWidget {
   Utilisateur utilisateur;
+
   PageProfil({@required this.utilisateur});
 
   _PageProfilState createState() => _PageProfilState();
@@ -86,8 +89,11 @@ class _PageProfilState extends State<PageProfil> {
                   pinned: true),
               SliverList(delegate:
                   SliverChildBuilderDelegate((BuildContext context, index) {
-                return ListTile(
-                    title: MyText(dataText: "Nouvelle tile: $index}"));
+                if (index == documents.length)
+                  return ListTile(title: MyText(dataText: "Fin de liste"));
+                if (index > documents.length) return null;
+                Post post = Post(documentSnapshot: documents[index]);
+                return PostTile(post: post, utilisateur: widget.utilisateur);
               })),
             ],
           );

@@ -14,10 +14,9 @@ class Post {
   List<dynamic> commentaires;
   Utilisateur utilisateur;
 
-  Post({Utilisateur utilisateur, DocumentSnapshot documentSnapshot}) {
+  Post({DocumentSnapshot documentSnapshot}) {
     this.documentReference = documentSnapshot.reference;
     this.documentID = documentSnapshot.id;
-    this.utilisateur = utilisateur;
     Map<String, dynamic> map = documentSnapshot.data();
     this.postId = map[cKeyPostId];
     this.texte = map[cKeyTexte];

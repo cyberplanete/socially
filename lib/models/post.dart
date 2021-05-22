@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
 
 class Post {
@@ -12,36 +11,35 @@ class Post {
   int date;
   List<dynamic> likes;
   List<dynamic> commentaires;
-  Utilisateur utilisateur;
 
   Post({DocumentSnapshot documentSnapshot}) {
-    this.documentReference = documentSnapshot.reference;
-    this.documentID = documentSnapshot.id;
+    documentReference = documentSnapshot.reference;
+    documentID = documentSnapshot.id;
     Map<String, dynamic> map = documentSnapshot.data();
-    this.postId = map[cKeyPostId];
-    this.texte = map[cKeyTexte];
-    this.utilisateurID = map[cKeyUtilisateurId];
-    this.imageUrl = map[cKeyImageUrl];
-    this.date = map[cKeyDate];
-    this.likes = map[cKeyLikes];
-    this.commentaires = map[cKeyCommentaires];
+    postId = map[cKeyPostId];
+    texte = map[cKeyTexte];
+    utilisateurID = map[cKeyUtilisateurId];
+    imageUrl = map[cKeyImageUrl];
+    date = map[cKeyDate];
+    likes = map[cKeyLikes];
+    commentaires = map[cKeyCommentaires];
   }
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
-      cKeyPostId: this.postId,
-      cKeyUtilisateurId: this.utilisateurID,
-      cKeyDate: this.date,
-      cKeyLikes: this.likes,
-      cKeyCommentaires: this.commentaires,
+      cKeyPostId: postId,
+      cKeyUtilisateurId: utilisateurID,
+      cKeyDate: date,
+      cKeyLikes: likes,
+      cKeyCommentaires: commentaires,
     };
-    if (texte != null) {
-      map[cKeyTexte] = this.texte;
-    }
-    if (imageUrl != null) {
-      map[cKeyImageUrl] = this.imageUrl;
+    if (this.texte != null) {
+      map[cKeyTexte] = texte;
     }
 
+    if (this.imageUrl != null) {
+      map[cKeyImageUrl] = imageUrl;
+    }
     return map;
   }
 }

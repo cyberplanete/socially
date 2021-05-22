@@ -71,8 +71,12 @@ class FireStoreLogique {
     //Creation d'une tache d'upload du fichier
     UploadTask uploadTask = ref.putFile(file);
     //Quand cette tache est terminée, je recupère le lien de téléchargement
-    uploadTask.whenComplete(() async => url =
-        await ref.getDownloadURL().catchError((onError) => print(onError)));
+    url = await (await uploadTask)
+        .ref
+        .getDownloadURL()
+        .catchError((onError) => print(onError));
+    // uploadTask.whenComplete(() async => url =
+    //     await ref.getDownloadURL().catchError((onError) => print(onError)));
     return url;
   }
 
@@ -115,6 +119,6 @@ class FireStoreLogique {
   }
 
   ///Cette methode retourne la liste des posts pour un utilisateur
-  Stream<QuerySnapshot> getUserPosts(String uid) =>
+  Stream<QuerySnapshot> getUserPostsFrom(String uid) =>
       fireStore_collectionOfUSers.doc(uid).collection("posts").snapshots();
 }

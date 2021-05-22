@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:socially/models/post.dart';
@@ -43,7 +44,21 @@ class PostTile extends StatelessWidget {
                         ],
                       )
                     ],
-                  )
+                  ),
+                  (post.imageUrl != null && post.imageUrl != "")
+                      ? Container(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          height: MediaQuery.of(context).size.width * 0.85,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    CachedNetworkImageProvider(post.imageUrl),
+                                fit: BoxFit.cover),
+                          ),
+                        )
+                      : Container(
+                          height: 0.0,
+                        )
                 ],
               )),
         ));

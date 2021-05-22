@@ -33,6 +33,7 @@ class Utilisateur {
       cKeyAbonnes: abonnesList,
       cKeyAbonnementList: abonnementList,
       cKeyImageUrl: imageUrl,
+      cKeyDescription: description,
     };
   }
 }

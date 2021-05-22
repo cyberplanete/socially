@@ -99,7 +99,7 @@ class _PageProfilState extends State<PageProfil> {
           );
         }
       },
-      stream: FireStoreLogique().getUserPosts(widget.utilisateur.uid),
+      stream: FireStoreLogique().getUserPostsFrom(widget.utilisateur.uid),
     );
   }
 }

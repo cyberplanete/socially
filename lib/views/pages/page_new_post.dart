@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:socially/controllers/FireStore_controller.dart';
+import 'package:socially/controllers/fireStoreLogique.dart';
 import 'package:socially/views/my_material.dart';
 
 class PageNewPost extends StatefulWidget {
@@ -26,8 +26,8 @@ class _PageNewPost extends State<PageNewPost> {
 
   @override
   void dispose() {
-    super.dispose();
     _textEditingController.dispose();
+    super.dispose();
   }
 
   @override

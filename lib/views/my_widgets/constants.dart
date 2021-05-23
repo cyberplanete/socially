@@ -49,3 +49,4 @@ Icon cIconLibrary = Icon(Icons.photo_library);
 Icon cIconLikeEmpty = Icon(Icons.favorite_border);
 Icon cIconLikeFull = Icon(Icons.favorite);
 Icon cIconMsg = Icon(Icons.message);
+Icon cIconSettings = Icon(Icons.settings);

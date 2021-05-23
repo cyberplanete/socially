@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/FireStore_controller.dart';
+import 'package:socially/controllers/fireStoreLogique.dart';
 import 'package:socially/delegate/MyHeader.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
@@ -17,7 +17,7 @@ class PageProfil extends StatefulWidget {
 }
 
 class _PageProfilState extends State<PageProfil> {
-  bool isProfilUserConnectedUser;
+  bool isProfilUserConnectedUser = false;
   ScrollController _scrollController;
   var silverBarExpandedHeight = 200.0;
 
@@ -54,14 +54,20 @@ class _PageProfilState extends State<PageProfil> {
         } else {
           //Je recupère une liste de documents firestore
           List<DocumentSnapshot> documents = snapshot.data.docs;
-
           return CustomScrollView(
             controller: _scrollController,
             slivers: [
               SliverAppBar(
                 pinned: true,
                 expandedHeight: silverBarExpandedHeight,
-                actions: [],
+                actions: [
+                  (isProfilUserConnectedUser)
+                      ? IconButton(
+                          onPressed: () => FireStoreLogique().deconnexion(),
+                          icon: cIconSettings,
+                          color: cPointer)
+                      : MyText(dataText: "Suivre ou ne plus suivre")
+                ],
                 flexibleSpace: FlexibleSpaceBar(
                   title: MyText(
                       // Afin que le nom et prenom apparaissent.. j'ai ajouter un addListener à mon controller puis setState

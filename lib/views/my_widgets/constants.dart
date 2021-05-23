@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:socially/models/utilisateurs.dart';
 
 ///Utilisateur global
@@ -36,11 +38,14 @@ String cKeyCommentaires = " commentaires";
 String cKeyDescription = "description";
 
 ///Icons
-Icon cHomeIcon = Icon(Icons.home);
-Icon cFriendsIcon = Icon(Icons.group);
-Icon cNotificationIcon = Icon(Icons.notifications);
-Icon cProfilIcon = Icon(Icons.account_circle);
-Icon cWriteIcon = Icon(Icons.border_color);
-Icon cSendIcon = Icon(Icons.send);
-Icon cCamIcon = Icon(Icons.camera_enhance);
-Icon cLibraryIcon = Icon(Icons.photo_library);
+Icon cIconHome = Icon(Icons.home);
+Icon cIconFriends = Icon(Icons.group);
+Icon cIconNotification = Icon(Icons.notifications);
+Icon cIconProfil = Icon(Icons.account_circle);
+Icon cIconWrite = Icon(Icons.border_color);
+Icon cIconSend = Icon(Icons.send);
+Icon cIconCam = Icon(Icons.camera_enhance);
+Icon cIconLibrary = Icon(Icons.photo_library);
+Icon cIconLikeEmpty = Icon(Icons.favorite_border);
+Icon cIconLikeFull = Icon(Icons.favorite);
+Icon cIconMsg = Icon(Icons.message);

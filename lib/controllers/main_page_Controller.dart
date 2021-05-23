@@ -62,20 +62,20 @@ class _StateMainAppController extends State<MainPageController> {
                   ///Index est utilisé pour ajouter la couleur du bouton pressé
                   MyBarItem(
                       //Si un index est = à la valeur du bouton selectionné alors la couleur de celui-ci est modifié
-                      icon: cHomeIcon,
+                      icon: cIconHome,
                       onPressed: (() => buttonSelected(0)),
                       isIconSelected: index == 0),
                   MyBarItem(
-                      icon: cFriendsIcon,
+                      icon: cIconFriends,
                       onPressed: (() => buttonSelected(1)),
                       isIconSelected: index == 1),
 
                   MyBarItem(
-                      icon: cNotificationIcon,
+                      icon: cIconNotification,
                       onPressed: (() => buttonSelected(2)),
                       isIconSelected: index == 2),
                   MyBarItem(
-                      icon: cProfilIcon,
+                      icon: cIconProfil,
                       onPressed: (() => buttonSelected(3)),
                       isIconSelected: index == 3),
                   Container(
@@ -88,7 +88,7 @@ class _StateMainAppController extends State<MainPageController> {
               ///FloatingActionButton
               floatingActionButton: FloatingActionButton(
                 onPressed: writePost,
-                child: cWriteIcon,
+                child: cIconWrite,
                 backgroundColor: cPointer,
               ),
               floatingActionButtonLocation:

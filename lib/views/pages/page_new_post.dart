@@ -63,7 +63,7 @@ class _PageNewPost extends State<PageNewPost> {
                   textInputType: TextInputType.text,
                   textEditingController: _textEditingController,
                   hintText: "Exprimez-vous",
-                  icon: cWriteIcon,
+                  icon: cIconWrite,
                 ),
                 top: 25.0,
                 right: 25.0,
@@ -75,13 +75,13 @@ class _PageNewPost extends State<PageNewPost> {
                   Column(
                     children: [
                       IconButton(
-                          icon: cCamIcon,
+                          icon: cIconCam,
 
                           ///Prendre une photo depuis la camera
                           onPressed: (() =>
                               prendreUnePhoto(ImageSource.camera))),
                       IconButton(
-                          icon: cLibraryIcon,
+                          icon: cIconLibrary,
 
                           ///Prendre une photo depuis la gallery
                           onPressed: (() =>

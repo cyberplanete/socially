@@ -15,14 +15,15 @@ class FireStoreLogique {
       firestore_instance.collection("utilisateurs");
 
   /// Methode signin avec email et password - retourne une erreur si probleme de connexion
-  Future<String> connexion(String email, String pwd) async {
+  Future<User> connexion(String email, String pwd) async {
     try {
       final UserCredential userCredential = await firebase_auth_instance
           .signInWithEmailAndPassword(email: email, password: pwd);
-      //return userCredential.user;
+      final User user = userCredential.user;
+      return user;
     } on FirebaseAuthException catch (e) {
       print(e.message);
-      return e.message;
+      //return e.message;
     }
   }
 

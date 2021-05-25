@@ -5,9 +5,11 @@ import 'package:socially/controllers/fireStoreLogique.dart';
 import 'package:socially/delegate/MyHeader.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
+import 'package:socially/useful/alert_box.dart';
 import 'package:socially/views/Tuiles/commentaireTuile.dart';
 import 'package:socially/views/my_material.dart';
 
+///Classe utiliser pour afficher le profil utilisateur
 class PageProfil extends StatefulWidget {
   Utilisateur utilisateur;
 
@@ -63,7 +65,8 @@ class _PageProfilState extends State<PageProfil> {
                 actions: [
                   (isProfilUserConnectedUser)
                       ? IconButton(
-                          onPressed: () => FireStoreLogique().deconnexion(),
+                          onPressed: () =>
+                              MesAlertsBox().disconnectAlert(context),
                           icon: cIconSettings,
                           color: cPointer)
                       : MyText(dataText: "Suivre ou ne plus suivre")

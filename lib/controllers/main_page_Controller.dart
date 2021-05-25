@@ -45,6 +45,7 @@ class _StateMainAppController extends State<MainPageController> {
   void dispose() {
     ///Stopper le stream
     streamListenner.cancel();
+    super.dispose();
   }
 
   @override

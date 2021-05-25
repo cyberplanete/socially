@@ -221,7 +221,7 @@ class _SigninStateController extends State<SigninController> {
 
           /// Si erreur lors de la création de compte, j'affiche un message d'erreur
           if (message_retour != null) {
-            MyAlertBox().error(context, message_retour.toString());
+            MesAlertsBox().errorSignInAlert(context, message_retour.toString());
           }
         } else {
           ///Verification nom et prenom puis inscription
@@ -232,20 +232,21 @@ class _SigninStateController extends State<SigninController> {
                   _mail.text, _password.text, _nom.text, _prenom.text);
             } else {
               ///alerte box pas de prenom
-              MyAlertBox().error(context, 'Pas de prénom');
+              MesAlertsBox().errorSignInAlert(context, 'Pas de prénom');
             }
           } else {
             ///alerte box pas de nom
-            MyAlertBox().error(context, 'Pas de nom');
+            MesAlertsBox().errorSignInAlert(context, 'Pas de nom');
           }
         }
       } else {
         ///alerte box pas de password
-        MyAlertBox().error(context, 'Pas de password');
+        MesAlertsBox().errorSignInAlert(context, 'Pas de password');
       }
     } else {
       ///alerte box pas de mail
-      MyAlertBox().error(context, 'Une adresse mail doit être ajoutée');
+      MesAlertsBox()
+          .errorSignInAlert(context, 'Une adresse mail doit être ajoutée');
     }
   }
 }

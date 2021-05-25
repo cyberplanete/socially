@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:socially/controllers/fireStoreLogique.dart';
 import 'package:socially/views/my_material.dart';
 
-class MyAlertBox {
-  Future<void> error(BuildContext context, String error) async {
+///Classe utiliser utiliser pour afficher divers alertBox
+class MesAlertsBox {
+  //Afficher une erreur si signin non reussi
+  Future<void> errorSignInAlert(BuildContext context, String error) async {
     MyText titre = MyText(
       dataText: 'Erreur',
       color: Colors.blueAccent,
@@ -12,41 +15,86 @@ class MyAlertBox {
       dataText: error,
       color: Colors.blueAccent,
     );
-
-    ///If barrierDismissible is true, then tapping this barrier will cause the current route to be popped (see Navigator.pop) with null as the value.
-    ///Montre une dialogBox Android ou pour Ios
+    //If barrierDismissible is true, then tapping this barrier will cause the current route to be popped (see Navigator.pop) with null as the value.
+    //Montre une dialogBox Android ou pour Ios
     return showDialog(
       context: context,
+      //Obliger l'utilisateur à choisir entre oui et non -- Ici non
       barrierDismissible: true,
       builder: (BuildContext buildContext) {
-        ///En fonction du fait si il s'agit d'un Ios ou Android
+        //En fonction du fait si il s'agit d'un Ios ou Android
         return (Theme.of(context).platform == TargetPlatform.iOS)
             ? CupertinoAlertDialog(
                 title: titre,
                 content: sousTitre,
                 actions: [
-                  close(buildContext, 'OK'),
+                  closeButton(buildContext, 'OK'),
                 ],
               )
             : AlertDialog(
                 title: titre,
                 content: sousTitre,
                 actions: [
-                  close(buildContext, 'OK'),
+                  closeButton(buildContext, 'OK'),
                 ],
               );
       },
     );
   }
 
-  FlatButton close(BuildContext buildContext, String texte) {
-    return FlatButton(
+  Future<void> disconnectAlert(BuildContext context) async {
+    MyText titre = MyText(
+      dataText: 'Voulez-vous vous déconnecter ?',
+      color: cBaseColor,
+    );
+    //If barrierDismissible is true, then tapping this barrier will cause the current route to be popped (see Navigator.pop) with null as the value.
+    //Montre une dialogBox Android ou pour Ios
+    return showDialog(
+      context: context,
+      //Obliger l'utilisateur à choisir entre oui et non -- Ici true
+      barrierDismissible: false,
+      builder: (BuildContext buildContext) {
+        //En fonction du fait si il s'agit d'un Ios ou Android
+        return (Theme.of(context).platform == TargetPlatform.iOS)
+            ? CupertinoAlertDialog(
+                title: titre,
+                actions: [
+                  closeButton(buildContext, 'Non'),
+                  disconnectButton(context),
+                ],
+              )
+            : AlertDialog(
+                title: titre,
+                actions: [
+                  closeButton(buildContext, 'Non'),
+                  disconnectButton(buildContext)
+                ],
+              );
+      },
+    );
+  }
+
+  TextButton closeButton(BuildContext buildContext, String texte) {
+    return TextButton(
       onPressed: () {
         Navigator.pop(buildContext);
       },
       child: MyText(
         dataText: texte,
         color: cPointer,
+      ),
+    );
+  }
+
+  TextButton disconnectButton(BuildContext buildContext) {
+    return TextButton(
+      onPressed: () {
+        FireStoreLogique().deconnexion();
+        Navigator.pop(buildContext);
+      },
+      child: MyText(
+        dataText: "Oui",
+        color: Colors.blue,
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:socially/models/utilisateurs.dart';
+import 'package:socially/useful/alert_box.dart';
 import 'package:socially/views/my_material.dart';
 
 class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
@@ -25,14 +26,19 @@ class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
         children: [
           isScrolled
               ? Container(width: 0.0, height: 0.0)
-              : MyText(dataText: "${utilisateur.prenom} ${utilisateur.nom}"),
+              : elementInkWell(
+                  "${utilisateur.prenom} ${utilisateur.nom}",
+                  context,
+                ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyProfileImage(onPressed: null, urlString: utilisateur.imageUrl),
-              (utilisateur.description == null)
-                  ? MyText(dataText: " Aucune description")
-                  : MyText(dataText: utilisateur.description),
+              elementInkWell(
+                  utilisateur.description == null
+                      ? (" Aucune description")
+                      : utilisateur.description,
+                  context),
             ],
           ),
           Container(
@@ -56,6 +62,19 @@ class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
         ],
       ),
     );
+  }
+
+  ///Une zone rectangulaire qui répond au toucher.
+  Widget elementInkWell(String text, BuildContext context) {
+    if (utilisateur.uid == cUtilisateur.uid) {
+      //A rectangular area of a Material that responds to touch.
+      return InkWell(
+        child: MyText(
+          dataText: text,
+        ),
+        onTap: () => MesAlertsBox().changeUserData(context),
+      );
+    } else {}
   }
 
   @override

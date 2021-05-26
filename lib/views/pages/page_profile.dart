@@ -96,6 +96,7 @@ class _PageProfilState extends State<PageProfil> {
                       voidCallback: null,
                       isScrolled: _showTitleIf),
                   pinned: true),
+              // Aficher la liste des commentaires
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, index) {
@@ -107,6 +108,7 @@ class _PageProfilState extends State<PageProfil> {
                     if (index > documents.length) {
                       return null;
                     }
+                    // Recupère le commentaire à l'index depuis la liste documentSnapshot
                     Post post = Post(documentSnapshot: documents[index]);
                     return CommentaireTuile(
                         post: post, utilisateur: widget.utilisateur);

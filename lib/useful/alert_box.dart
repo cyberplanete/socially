@@ -28,20 +28,21 @@ class MesAlertsBox {
                 title: titre,
                 content: sousTitre,
                 actions: [
-                  closeButton(buildContext, 'OK'),
+                  myButton(buildContext, 'OK'),
                 ],
               )
             : AlertDialog(
                 title: titre,
                 content: sousTitre,
                 actions: [
-                  closeButton(buildContext, 'OK'),
+                  myButton(buildContext, 'OK'),
                 ],
               );
       },
     );
   }
 
+  ///Deconnexion de l'utilisateur
   Future<void> disconnectAlert(BuildContext context) async {
     MyText titre = MyText(
       dataText: 'Voulez-vous vous déconnecter ?',
@@ -59,14 +60,14 @@ class MesAlertsBox {
             ? CupertinoAlertDialog(
                 title: titre,
                 actions: [
-                  closeButton(buildContext, 'Non'),
+                  myButton(buildContext, 'Non'),
                   disconnectButton(context),
                 ],
               )
             : AlertDialog(
                 title: titre,
                 actions: [
-                  closeButton(buildContext, 'Non'),
+                  myButton(buildContext, 'Non'),
                   disconnectButton(buildContext)
                 ],
               );
@@ -74,7 +75,18 @@ class MesAlertsBox {
     );
   }
 
-  TextButton closeButton(BuildContext buildContext, String texte) {
+  ///A modal bottom sheet is an alternative to a menu or a dialog and prevents the user from interacting with the rest of the app.
+  void changeUserData(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            color: cBaseColor,
+          );
+        });
+  }
+
+  TextButton myButton(BuildContext buildContext, String texte) {
     return TextButton(
       onPressed: () {
         Navigator.pop(buildContext);

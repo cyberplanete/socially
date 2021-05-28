@@ -8,7 +8,7 @@ import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/delegate/MyHeader.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
-import 'package:socially/useful/alert_box.dart';
+import 'package:socially/useful/mes_alert_box.dart';
 import 'package:socially/views/Tuiles/commentaireTuile.dart';
 import 'package:socially/views/my_material.dart';
 
@@ -106,7 +106,7 @@ class _PageProfilState extends State<PageProfil> {
               SliverPersistentHeader(
                   delegate: MyHeaderSliverPersistent(
                       utilisateur: widget.utilisateur,
-                      callbackFunctionChangeUserData: null,
+                      callbackFunctionChangeUserData: changeUserDataField,
                       isScrolled: _showTitleIf),
                   pinned: true),
               // Aficher la liste des commentaires
@@ -193,6 +193,13 @@ class _PageProfilState extends State<PageProfil> {
   }
 
   void validerChangementDataUser() {}
+
+  void changeUserDataField() {
+    MesAlertsBox().changeUserDataAlert(context,
+        textEditingController_nom: textEditingController_nom,
+        textEditingController_prenom: textEditingController_prenom,
+        textEditingController_description: textEditingController_description);
+  }
 }
 // MyTextField(
 // textEditingController: textEditingController_nom,

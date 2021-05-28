@@ -162,12 +162,16 @@ class _PageProfilState extends State<PageProfil> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
-                            onPressed: () =>
-                                prendreUnePhoto(ImageSource.camera),
+                            onPressed: () {
+                              prendreUnePhoto(ImageSource.camera);
+                              Navigator.pop(context);
+                            },
                             icon: cIconCam),
                         IconButton(
-                            onPressed: () =>
-                                prendreUnePhoto(ImageSource.gallery),
+                            onPressed: () {
+                              prendreUnePhoto(ImageSource.gallery);
+                              Navigator.pop(context);
+                            },
                             icon: cIconLibrary)
                       ],
                     )

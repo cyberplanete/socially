@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:socially/controllers/fireStoreLController.dart';
+import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/views/my_material.dart';
 
 class PageNewPost extends StatefulWidget {

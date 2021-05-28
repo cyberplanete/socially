@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/fireStoreLController.dart';
+import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/pages/page_fil_actualit%C3%A9s.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/fireStoreLController.dart';
+import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/useful/alert_box.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/my_widgets/my_button_gradient.dart';

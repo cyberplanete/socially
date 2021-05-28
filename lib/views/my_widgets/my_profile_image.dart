@@ -17,6 +17,6 @@ class MyProfileImage extends InkWell {
                 radius: taille,
                 //urlString est null ? ou vide ?
                 backgroundImage: (urlString != null && urlString != "")
-                    ? CachedNetworkImage(imageUrl: urlString)
+                    ? CachedNetworkImageProvider(urlString)
                     : cLogoImage));
 }

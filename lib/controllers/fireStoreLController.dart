@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:socially/views/my_material.dart';
 
-class FireStoreLogique {
+class FireStoreController {
   ///Autorisation
   final firebase_auth_instance = FirebaseAuth.instance;
 
@@ -13,6 +13,13 @@ class FireStoreLogique {
   static final firestore_instance = FirebaseFirestore.instance;
   final fireStore_collectionOfUSers =
       firestore_instance.collection("utilisateurs");
+
+  ///Stockage - Creation Dossier utilisateurs et dossier posts
+  static final stockageInstance = FirebaseStorage.instance.ref();
+  //Je cree un emplacement de stockage pour les utlisateurs
+  final stockageUitilisateur = stockageInstance.child("utilisateurs");
+  //Je cree un emplacement de stockage pour les posts
+  final stockagePosts = stockageInstance.child("posts");
 
   /// Methode signin avec email et password - retourne une erreur si probleme de connexion
   Future<User> connexion(String email, String pwd) async {
@@ -59,14 +66,13 @@ class FireStoreLogique {
     fireStore_collectionOfUSers.doc(uid).set(map);
   }
 
-  ///Stockage - Dossier utilisateurs et dossier posts
-  static final stockageInstance = FirebaseStorage.instance.ref();
-  //Je cree un emplacement de stockage pour les utlisateurs
-  final stockageUitilisateur = stockageInstance.child("utilisateurs");
-  //Je cree un emplacement de stockage pour les posts
-  final stockagePosts = stockageInstance.child("posts");
+  ///Méthode permettant la mise à jour des données utilisateurs
+  modificationUserData(Map<String, dynamic> data) {
+    fireStore_collectionOfUSers.doc(cUtilisateur.uid).update(data);
+  }
 
   ///Methode permettant d'ajouter une photo - Creation d'une tache d'upload du fichier puis quand cette tache est terminée, je recupère le lien de téléchargement
+  ///utilisé pour récuperer la photo
   Future<String> ajouterPhoto(File file, Reference ref) async {
     String url;
     //Creation d'une tache d'upload du fichier
@@ -79,6 +85,15 @@ class FireStoreLogique {
     // uploadTask.whenComplete(() async => url =
     //     await ref.getDownloadURL().catchError((onError) => print(onError)));
     return url;
+  }
+
+  ///Méthode permettant la modification de la photo
+  modificationPhoto(File file) {
+    Reference refStockage = stockageUitilisateur.child(cUtilisateur.uid);
+    ajouterPhoto(file, refStockage).then((value) {
+      Map<String, dynamic> data = {cKeyImageUrl: value};
+      modificationUserData(data);
+    });
   }
 
   ///Methode permettant l'ajout d'un post

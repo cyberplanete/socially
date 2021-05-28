@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/fireStoreLogique.dart';
+import 'package:socially/controllers/fireStoreLController.dart';
 import 'package:socially/useful/alert_box.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/my_widgets/my_button_gradient.dart';
@@ -217,7 +217,7 @@ class _SigninStateController extends State<SigninController> {
         if (isUserExist) {
           ///Connection avec mail et password
           var message_retour =
-              await FireStoreLogique().connexion(_mail.text, _password.text);
+              await FireStoreController().connexion(_mail.text, _password.text);
 
           /// Si erreur lors de la création de compte, j'affiche un message d'erreur
           if (message_retour != null) {
@@ -228,7 +228,7 @@ class _SigninStateController extends State<SigninController> {
           if (_nom.text != null && _nom.text != '') {
             if (_prenom.text != null && _prenom.text != '') {
               ///inscription
-              FireStoreLogique().creationCompte(
+              FireStoreController().creationCompte(
                   _mail.text, _password.text, _nom.text, _prenom.text);
             } else {
               ///alerte box pas de prenom

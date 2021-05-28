@@ -20,7 +20,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Socially',
       theme: ThemeData(
+        //Couleurs definie par défaut
         primarySwatch: Colors.blue,
+
+        // utilise par exemple par showModalBottomSheet profil_Page changeUserData()
+        canvasColor: Colors.transparent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: _isUserConnected(),

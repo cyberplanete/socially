@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/fireStoreLogique.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:socially/controllers/fireStoreLController.dart';
 import 'package:socially/delegate/MyHeader.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
@@ -19,6 +22,10 @@ class PageProfil extends StatefulWidget {
 }
 
 class _PageProfilState extends State<PageProfil> {
+  TextEditingController textEditingController_nom;
+  TextEditingController textEditingController_prenom;
+  TextEditingController textEditingController_description;
+  File imagePrise;
   bool isProfilUserConnectedUser = false;
   ScrollController _scrollController;
   var silverBarExpandedHeight = 200.0;
@@ -39,11 +46,17 @@ class _PageProfilState extends State<PageProfil> {
           print('scrolling');
         });
       });
+    textEditingController_nom = TextEditingController();
+    textEditingController_prenom = TextEditingController();
+    textEditingController_description = TextEditingController();
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    textEditingController_nom.dispose();
+    textEditingController_prenom.dispose();
+    textEditingController_description.dispose();
     super.dispose();
   }
 
@@ -86,14 +99,14 @@ class _PageProfilState extends State<PageProfil> {
                       child: Center(
                           child: MyProfileImage(
                               taille: 75.0,
-                              onPressed: null,
+                              onPressed: changeUserPhoto,
                               urlString: widget.utilisateur.imageUrl))),
                 ),
               ),
               SliverPersistentHeader(
                   delegate: MyHeaderSliverPersistent(
                       utilisateur: widget.utilisateur,
-                      voidCallback: null,
+                      callbackFunctionChangeUserData: null,
                       isScrolled: _showTitleIf),
                   pinned: true),
               // Aficher la liste des commentaires
@@ -119,7 +132,77 @@ class _PageProfilState extends State<PageProfil> {
           );
         }
       },
-      stream: FireStoreLogique().getUserPostsFrom(widget.utilisateur.uid),
+      stream: FireStoreController().getUserPostsFrom(widget.utilisateur.uid),
     );
   }
+
+  //A modal bottom sheet is an alternative to a menu or a dialog and prevents the user from interacting with the rest of the app.
+  ///Permet de changer la photo de l'utilisateur
+  void changeUserPhoto() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            // canvas Transparence definie par defaut dans le widget materialApp de main.dart - Utilisé ici pour plus de clarté du code
+            color: Colors.transparent,
+            child: Card(
+              elevation: 5.0,
+              //Inner padding depuis le container -- Padding interieur
+              margin: EdgeInsets.all(7.5),
+              child: Container(
+                color: cBaseAccent,
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    MyText(
+                      dataText: "Modification de la photo de profil",
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                            onPressed: () =>
+                                prendreUnePhoto(ImageSource.camera),
+                            icon: cIconCam),
+                        IconButton(
+                            onPressed: () =>
+                                prendreUnePhoto(ImageSource.gallery),
+                            icon: cIconLibrary)
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  Future<void> prendreUnePhoto(ImageSource camera) async {
+    final PickedFile photo = await ImagePicker()
+        .getImage(source: camera, maxWidth: 500.0, maxHeight: 500.0);
+    setState(() {
+      imagePrise = File(photo.path);
+      FireStoreController().modificationPhoto(imagePrise);
+    });
+  }
+
+  void validerChangementDataUser() {}
 }
+// MyTextField(
+// textEditingController: textEditingController_nom,
+// hintText: widget.utilisateur.nom,
+// ),
+// MyTextField(
+// textEditingController: textEditingController_prenom,
+// hintText: widget.utilisateur.prenom,
+// ),
+// MyTextField(
+// textEditingController: textEditingController_description,
+// hintText: widget.utilisateur.description ??
+// "Aucune  description",
+// ),
+// MyButtonGradient(
+// callback: validerChangementDataUser,
+// texte: "Valider les changements")

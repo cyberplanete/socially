@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/fireStoreLogique.dart';
+import 'package:socially/controllers/fireStoreLController.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/pages/page_fil_actualit%C3%A9s.dart';
@@ -28,7 +28,7 @@ class _StateMainAppController extends State<MainPageController> {
   @override
   void initState() {
     ///je crée une souscription au stream, utilisé dans une classe utilisateur
-    streamListenner = FireStoreLogique()
+    streamListenner = FireStoreController()
         .fireStore_collectionOfUSers
         .doc(widget.uid)
         .snapshots()

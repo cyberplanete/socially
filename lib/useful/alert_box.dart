@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/fireStoreLogique.dart';
+import 'package:socially/controllers/fireStoreLController.dart';
 import 'package:socially/views/my_material.dart';
 
 ///Classe utiliser utiliser pour afficher divers alertBox
@@ -75,17 +75,6 @@ class MesAlertsBox {
     );
   }
 
-  ///A modal bottom sheet is an alternative to a menu or a dialog and prevents the user from interacting with the rest of the app.
-  void changeUserData(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            color: cBaseColor,
-          );
-        });
-  }
-
   TextButton myButton(BuildContext buildContext, String texte) {
     return TextButton(
       onPressed: () {
@@ -101,12 +90,12 @@ class MesAlertsBox {
   TextButton disconnectButton(BuildContext buildContext) {
     return TextButton(
       onPressed: () {
-        FireStoreLogique().deconnexion();
+        FireStoreController().deconnexion();
         Navigator.pop(buildContext);
       },
       child: MyText(
         dataText: "Oui",
-        color: Colors.blue,
+        color: Colors.green,
       ),
     );
   }

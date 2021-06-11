@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:socially/models/utilisateurs.dart';
 
 ///Utilisateur global
-Utilisateur cUtilisateur;
+Utilisateur cUtilisateurConnecte;
 
 ///showBottomSheet
 bool cIsSheetOpen = false;

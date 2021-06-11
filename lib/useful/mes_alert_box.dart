@@ -81,15 +81,15 @@ class MesAlertsBox {
       @required TextEditingController textEditingController_description}) {
     MyTextField nomTF = MyTextField(
       textEditingController: textEditingController_nom,
-      hintText: cUtilisateur.nom,
+      hintText: cUtilisateurConnecte.nom,
     );
     MyTextField prenomTF = MyTextField(
       textEditingController: textEditingController_prenom,
-      hintText: cUtilisateur.prenom,
+      hintText: cUtilisateurConnecte.prenom,
     );
     MyTextField descriptionTF = MyTextField(
       textEditingController: textEditingController_description,
-      hintText: cUtilisateur.description ?? "Aucune  description",
+      hintText: cUtilisateurConnecte.description ?? "Aucune  description",
     );
     MyText titre = MyText(
       dataText: "Changer les données de l'utilisateur",

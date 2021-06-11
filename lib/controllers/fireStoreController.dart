@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
 
 class FireStoreController {
@@ -69,7 +70,7 @@ class FireStoreController {
 
   ///Méthode permettant la mise à jour des données utilisateurs
   modificationUserData(Map<String, dynamic> data) {
-    fireStore_collectionOfUSers.doc(cUtilisateur.uid).update(data);
+    fireStore_collectionOfUSers.doc(cUtilisateurConnecte.uid).update(data);
   }
 
   ///Methode permettant d'ajouter une photo - Creation d'une tache d'upload du fichier puis quand cette tache est terminée, je recupère le lien de téléchargement
@@ -90,11 +91,34 @@ class FireStoreController {
 
   ///Méthode permettant la modification de la photo
   modificationPhoto(File file) {
-    Reference refStockage = stockageUitilisateur.child(cUtilisateur.uid);
+    Reference refStockage =
+        stockageUitilisateur.child(cUtilisateurConnecte.uid);
     ajouterPhoto(file, refStockage).then((value) {
       Map<String, dynamic> data = {cKeyImageUrl: value};
       modificationUserData(data);
     });
+  }
+
+  ///Ajoute ou supprime un autre utilisateur dans la liste des personnes à suivre et ajoute ou supprime l'utilisateur connecté de la liste des abonnés de l'autre utilisateur
+  suivreUtilisateur(Utilisateur autreUtilisateur) {
+    //Retrait de d'un autre utilisateur de la liste des personnes suivies si présent dans la liste d'abonnement de l'utilisateur connecté
+    if (cUtilisateurConnecte.abonnementList.contains(autreUtilisateur.uid)) {
+      cUtilisateurConnecte.documentReference.update({
+        cKeyAbonnementList: FieldValue.arrayRemove([autreUtilisateur.uid])
+      });
+      //Par consequent retrait de l'utilisateur connecté egalement de la liste des personnes suivies (abonnés) de l'autre utilisateur
+      autreUtilisateur.documentReference.update({
+        cKeyAbonnes: FieldValue.arrayRemove([cUtilisateurConnecte.uid])
+      });
+    } else {
+      cUtilisateurConnecte.documentReference.update({
+        cKeyAbonnementList: FieldValue.arrayUnion([autreUtilisateur.uid])
+      });
+
+      autreUtilisateur.documentReference.update({
+        cKeyAbonnes: FieldValue.arrayUnion([cUtilisateurConnecte.uid])
+      });
+    }
   }
 
   ///Methode permettant l'ajout d'un post

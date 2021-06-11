@@ -39,7 +39,8 @@ class _PageProfilState extends State<PageProfil> {
   @override
   void initState() {
     super.initState();
-    isProfilUserConnectedUser = (widget.utilisateur.uid == cUtilisateur.uid);
+    isProfilUserConnectedUser =
+        (widget.utilisateur.uid == cUtilisateurConnecte.uid);
     _scrollController = ScrollController()
       ..addListener(() {
         setState(() {

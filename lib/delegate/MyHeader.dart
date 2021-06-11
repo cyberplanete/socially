@@ -64,7 +64,7 @@ class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
 
   ///Une zone rectangulaire qui répond au toucher.
   Widget elementInkWell(String text) {
-    if (utilisateur.uid == cUtilisateur.uid) {
+    if (utilisateur.uid == cUtilisateurConnecte.uid) {
       //A rectangular area of a Material that responds to touch.
       return InkWell(
         child: MyText(

@@ -20,14 +20,14 @@ class MainPageController extends StatefulWidget {
 
 ///Cette page est affiché quand l'utilisateur est connecté , contenant une bottomBarNavigation
 class _StateMainAppController extends State<MainPageController> {
-  GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   StreamSubscription streamListenner;
   PersistentBottomSheetController persisitantBottomSheetcontroller;
 
   int index = 0;
   @override
   void initState() {
-    ///je crée une souscription au stream, utilisé dans une classe utilisateur
+    ///je crée une souscription au stream, utilisé dans la classe utilisateur
     streamListenner = FireStoreController()
         .fireStore_collectionOfUSers
         .doc(widget.uid)
@@ -35,8 +35,8 @@ class _StateMainAppController extends State<MainPageController> {
         .listen((document) {
       //print(event.data());
       setState(() {
-        cUtilisateur = Utilisateur(document);
-        print(cUtilisateur.nom);
+        cUtilisateurConnecte = Utilisateur(document);
+        print(cUtilisateurConnecte.nom);
       });
     });
   }
@@ -50,14 +50,14 @@ class _StateMainAppController extends State<MainPageController> {
 
   @override
   Widget build(BuildContext context) {
-    return (cUtilisateur == null)
+    return (cUtilisateurConnecte == null)
         ? MyProgressIndicatorScafold()
         : SafeArea(
             child: Scaffold(
               backgroundColor: cBaseColor,
 
               body: afficherPageOnSelectedIcon(),
-              key: _globalKey,
+              key: _scaffoldKey,
               bottomNavigationBar: MyBottomBar(
                 barItems: [
                   ///Index est utilisé pour ajouter la couleur du bouton pressé
@@ -110,7 +110,7 @@ class _StateMainAppController extends State<MainPageController> {
   void writePost() {
     if (!cIsSheetOpen) {
       persisitantBottomSheetcontroller =
-          _globalKey.currentState.showBottomSheet((context) => PageNewPost());
+          _scaffoldKey.currentState.showBottomSheet((context) => PageNewPost());
       cIsSheetOpen = true;
     } else {
       Navigator.of(context).pop();
@@ -129,7 +129,7 @@ class _StateMainAppController extends State<MainPageController> {
       case 2:
         return PageNotifications();
       default:
-        return PageProfil(utilisateur: cUtilisateur);
+        return PageProfil(utilisateur: cUtilisateurConnecte);
     }
   }
 }

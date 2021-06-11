@@ -49,19 +49,14 @@ class _PageUtilisateur extends State<PageUtilisateurs> {
                 itemBuilder: (BuildContext buildContext, int index) {
                   Utilisateur utilisateur = Utilisateur(listOfUser[index]);
                   return ListTile(
-                    leading: MyProfileImage(
-                        onPressed: null, urlString: utilisateur.imageUrl),
-                    title: MyText(
-                      dataText: "${utilisateur.nom} ${utilisateur.prenom}",
-                      color: cBaseAccent,
-                    ),
-                    trailing: TextButton(
-                        onPressed: null,
-                        child: MyText(
-                          dataText: "Suivre",
-                          color: cPointer,
-                        )),
-                  );
+                      leading: MyProfileImage(
+                          onPressed: null, urlString: utilisateur.imageUrl),
+                      title: MyText(
+                        dataText: "${utilisateur.nom} ${utilisateur.prenom}",
+                        color: cBaseAccent,
+                      ),
+                      trailing:
+                          MyButtonTextSuivre(autreUtilisateur: utilisateur));
                 }),
           );
         } else {

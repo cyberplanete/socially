@@ -127,7 +127,7 @@ class _PageNewPost extends State<PageNewPost> {
         (_textEditingController.text != null &&
             _textEditingController.text != "")) {
       FireStoreController().ajouterPost(
-          utilisateurId: cUtilisateur.uid,
+          utilisateurId: cUtilisateurConnecte.uid,
           texte: _textEditingController.text,
           photo: imagePrise);
 

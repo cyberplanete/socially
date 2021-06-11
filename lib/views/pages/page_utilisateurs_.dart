@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/utilisateurs.dart';
+import 'package:socially/views/Tuiles/listeUtilisateurTuile.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/my_widgets/my_loading_Center.dart';
 
@@ -48,15 +49,9 @@ class _PageUtilisateur extends State<PageUtilisateurs> {
                 itemCount: listOfUser.length,
                 itemBuilder: (BuildContext buildContext, int index) {
                   Utilisateur utilisateur = Utilisateur(listOfUser[index]);
-                  return ListTile(
-                      leading: MyProfileImage(
-                          onPressed: null, urlString: utilisateur.imageUrl),
-                      title: MyText(
-                        dataText: "${utilisateur.nom} ${utilisateur.prenom}",
-                        color: cBaseAccent,
-                      ),
-                      trailing:
-                          MyButtonTextSuivre(autreUtilisateur: utilisateur));
+                  return UtilisateurTuile(
+                    utilisateur: utilisateur,
+                  );
                 }),
           );
         } else {

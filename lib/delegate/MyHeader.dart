@@ -72,7 +72,11 @@ class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
         ),
         onTap: callbackFunctionChangeUserData,
       );
-    } else {}
+    } else {
+      return MyText(
+        dataText: text,
+      );
+    }
   }
 
   @override

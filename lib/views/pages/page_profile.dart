@@ -86,13 +86,15 @@ class _PageProfilState extends State<PageProfil> {
                       : MyText(dataText: "Suivre ou ne plus suivre")
                 ],
                 flexibleSpace: FlexibleSpaceBar(
-                  title: MyText(
-                      // Afin que le nom et prenom apparaissent.. j'ai ajouter un addListener à mon controller puis setState
-                      dataText: _showTitleIf
-                          ? widget.utilisateur.prenom +
+                  title: _showTitleIf
+                      ? MyText(
+                          dataText: widget.utilisateur.prenom +
                               " " +
-                              widget.utilisateur.nom
-                          : ""),
+                              widget.utilisateur.nom,
+                        )
+                      : MyText(
+                          dataText: "",
+                        ),
                   background: Container(
                       decoration: BoxDecoration(
                           image: DecorationImage(
@@ -193,7 +195,7 @@ class _PageProfilState extends State<PageProfil> {
     });
   }
 
-  void validerChangementDataUser() {}
+  // void validerChangementDataUser() {}
 
   void changeUserDataField() {
     MesAlertsBox().changeUserDataAlert(context,

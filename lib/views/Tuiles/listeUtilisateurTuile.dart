@@ -5,6 +5,8 @@ import 'package:socially/views/my_widgets/constants.dart';
 import 'package:socially/views/my_widgets/my_buttonText_suivre.dart';
 import 'package:socially/views/my_widgets/my_profile_image.dart';
 import 'package:socially/views/my_widgets/my_text_widget.dart';
+import 'package:socially/views/pages/page_profile.dart';
+import 'package:socially/views/pages/page_utilisateurs_.dart';
 
 class UtilisateurTuile extends StatelessWidget {
   Utilisateur utilisateur;
@@ -13,6 +15,19 @@ class UtilisateurTuile extends StatelessWidget {
   Widget build(BuildContext context) {
     //A rectangular area of a Material that responds to touch.
     return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext buildContext) {
+          return Scaffold(
+            backgroundColor: cBaseColor,
+            body: SafeArea(
+              child: PageProfil(
+                utilisateur: utilisateur,
+              ),
+            ),
+          );
+        }));
+      },
       child: Container(
         color: Colors.transparent,
         margin: EdgeInsets.all(2.5),

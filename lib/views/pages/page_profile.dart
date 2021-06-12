@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,12 +30,14 @@ class _PageProfilState extends State<PageProfil> {
   bool isProfilUserConnectedUser = false;
   ScrollController _scrollController;
   var silverBarExpandedHeight = 200.0;
-
-  /// Si IsScrolled true ou false - Le nom et prenom sera affiché soit dans SliverAppBar(FlexibleSpace) ou SliverPersistentHeader
+  // Si IsScrolled true ou false - Le nom et prenom sera affiché soit dans SliverAppBar(FlexibleSpace) ou SliverPersistentHeader
   bool get _showTitleIf {
     return _scrollController.hasClients &&
         _scrollController.offset > (silverBarExpandedHeight - kToolbarHeight);
   }
+
+//Pour ecouter un evennement
+  StreamSubscription streamSubscription;
 
   @override
   void initState() {
@@ -50,6 +53,16 @@ class _PageProfilState extends State<PageProfil> {
     textEditingController_nom = TextEditingController();
     textEditingController_prenom = TextEditingController();
     textEditingController_description = TextEditingController();
+    //Permettre la mise à jour en temps réel du bouton suivre .. (La base se mettait à jour mais cela n'etait pas visible sur UI)
+    streamSubscription = FireStoreController()
+        .fireStore_collectionOfUSers
+        .doc(widget.utilisateur.uid)
+        .snapshots()
+        .listen((event) {
+      setState(() {
+        widget.utilisateur = Utilisateur(event);
+      });
+    });
   }
 
   @override
@@ -83,7 +96,7 @@ class _PageProfilState extends State<PageProfil> {
                               MesAlertsBox().disconnectAlert(context),
                           icon: cIconSettings,
                           color: cPointer)
-                      : MyText(dataText: "Suivre ou ne plus suivre")
+                      : MyButtonTextSuivre(autreUtilisateur: widget.utilisateur)
                 ],
                 flexibleSpace: FlexibleSpaceBar(
                   title: _showTitleIf

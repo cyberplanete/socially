@@ -28,20 +28,8 @@ class _PageUtilisateur extends State<PageUtilisateurs> {
             headerSliverBuilder: (BuildContext buildContext, bool isScrolled) {
               // Je retourne  un array
               return [
-                SliverAppBar(
-                  pinned: true,
-                  flexibleSpace: FlexibleSpaceBar(
-                    title: MyText(
-                      dataText: "Liste d'utilisateurs",
-                      color: cBaseAccent,
-                    ),
-                    background: Image(
-                      image: cEventImage,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  expandedHeight: 150.0,
-                )
+                MySliverAppBar(
+                    titre: "Liste des utilisateurs", image: cEventImage)
               ];
             },
             //Construction de ma liste
@@ -55,7 +43,7 @@ class _PageUtilisateur extends State<PageUtilisateurs> {
                 }),
           );
         } else {
-          return LoadingCenter();
+          return MyLoadingCenter();
         }
       },
       stream: FireStoreController().fireStore_collectionOfUSers.snapshots(),

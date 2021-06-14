@@ -15,3 +15,4 @@ export 'my_widgets/my_progress_indicator_scafold.dart';
 export 'my_widgets/my_textField.dart';
 export 'my_widgets/my_text_widget.dart';
 export 'my_widgets/my_buttonText_suivre.dart';
+export 'my_widgets/my_sliver_app_bar.dart';

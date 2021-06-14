@@ -14,10 +14,11 @@ class PageFilActualite extends StatefulWidget {
 class _PageFilActualiteState extends State<PageFilActualite> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: MyText(
-        dataText: "Page Fil Actualite",
-      ),
-    );
+    return NestedScrollView(
+        headerSliverBuilder: (BuildContext buildContext, bool isScrolled) {
+          // Je retourne  un array
+          return [MySliverAppBar(titre: "Fil d'actualité", image: cHomeImage)];
+        },
+        body: MyLoadingCenter());
   }
 }

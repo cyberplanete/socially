@@ -9,7 +9,7 @@ class MyProgressIndicatorScafold extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       body: SafeArea(
-        child: LoadingCenter(),
+        child: MyLoadingCenter(),
       ),
     );
   }

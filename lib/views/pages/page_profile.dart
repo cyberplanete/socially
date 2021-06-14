@@ -79,7 +79,7 @@ class _PageProfilState extends State<PageProfil> {
     return StreamBuilder(
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) {
-          return LoadingCenter();
+          return MyLoadingCenter();
         } else {
           //Je recupère une liste de documents firestore
           List<DocumentSnapshot> documents = snapshot.data.docs;

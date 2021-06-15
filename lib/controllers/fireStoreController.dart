@@ -46,11 +46,11 @@ class FireStoreController {
         .createUserWithEmailAndPassword(email: email, password: pwd);
 
     //Créer mon utilisateur pour l'ajouter dans la bdd
-    String utilisateurId = userCredential.user.uid;
-    List<dynamic> listAbonnes = [];
-
     //j'ajoute l"utilisateurId de l'utilisateur par défaut afin qu'il puisse suivre les posts écris par lui meme.
-    List<dynamic> abonnementList = [utilisateurId];
+    String utilisateurId = userCredential.user.uid;
+    List<dynamic> listAbonnes = [utilisateurId];
+
+    List<dynamic> abonnementList = [];
     Map<String, dynamic> donneesUtilisateur = {
       cKeyNom: nom,
       ckeyPrenom: prenom,

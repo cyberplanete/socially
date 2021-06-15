@@ -50,11 +50,13 @@ class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
             children: [
               InkWell(
                   child: MyText(
-                      dataText: "Abonnés: ${utilisateur.abonnesList.length}")),
+                      // -1 parce je suis mes propres posts par defaut
+                      dataText:
+                          "Abonnés: ${utilisateur.abonnesList.length - 1}")),
               InkWell(
                   child: MyText(
-                      dataText: // -1 parce je suis mes propres posts par defaut
-                          "Abonnements: ${utilisateur.abonnementList.length - 1}"))
+                      dataText:
+                          "Abonnements: ${utilisateur.abonnementList.length}"))
             ],
           )
         ],

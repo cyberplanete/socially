@@ -123,7 +123,7 @@ class _StateMainAppController extends State<MainPageController> {
   Widget afficherPageOnSelectedIcon() {
     switch (index) {
       case 0:
-        return PageFilActualite();
+        return PageFilActualite(utilisateurID: widget.uid);
       case 1:
         return PageUtilisateurs();
       case 2:

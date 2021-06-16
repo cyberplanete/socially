@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
+import 'package:socially/views/Tuiles/commentaireTuile.dart';
 import 'package:socially/views/my_material.dart';
 
 class PageFilActualite extends StatefulWidget {
-  Utilisateur utilisateur;
-  PageFilActualite({this.utilisateur});
+  String utilisateurID;
+  PageFilActualite({this.utilisateurID});
 
   @override
   _PageFilActualiteState createState() => _PageFilActualiteState();
@@ -24,15 +25,12 @@ class _PageFilActualiteState extends State<PageFilActualite> {
 
   @override
   void initState() {
-    // TODO: implement initState
-
     super.initState();
     configurationStreamSubscription();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     streamSubscription.cancel();
     super.dispose();
   }
@@ -40,40 +38,53 @@ class _PageFilActualiteState extends State<PageFilActualite> {
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
-        headerSliverBuilder: (BuildContext buildContext, bool isScrolled) {
-          // Je retourne  un array
-          return [MySliverAppBar(titre: "Fil d'actualité", image: cHomeImage)];
+      headerSliverBuilder: (BuildContext buildContext, bool isScrolled) {
+        // Je retourne  un array
+        return [MySliverAppBar(titre: "Fil d'actualité", image: cHomeImage)];
+      },
+      body: ListView.builder(
+        itemCount: listPosts.length,
+        itemBuilder: (BuildContext buildContext, int index) {
+          Post post = listPosts[index];
+          Utilisateur utilisateur = listUtilisateurs
+              .singleWhere((element) => element.uid == post.utilisateurUID);
+          return CommentaireTuile(
+            post: post,
+            utilisateur: utilisateur,
+            detail: false,
+          );
         },
-        body: MyLoadingCenter());
+      ),
+    );
   }
 
   ///Afficher la liste de posts des abonnes suivant l'utilisateur connecté -
 
-  void configurationStreamSubscription() {
+  configurationStreamSubscription() {
     // Ecouter les snapshots des abonnes de l'utilisateur connecté
     streamSubscription = FireStoreController()
         .fireStore_collectionOfUSers
-        .where(cKeyAbonnes, arrayContains: cUtilisateurConnecte.uid)
+        .where(cKeyAbonnes, arrayContains: widget.utilisateurID)
         .snapshots()
         .listen((datas) {
       //getUtilisateurs cree une liste d'utilisateurs
       getUtilisateurs(datas.docs);
-      //Pour chaque utilisateur j'ecoute leurs snapshots
-      datas.docs.forEach((utilisateur) {
-        utilisateur.reference
-            .collection("post")
+      //Pour chaque utilisateur j'ecoute leurs posts snapshots
+      datas.docs.forEach((docs) {
+        docs.reference
+            .collection("posts")
             .snapshots()
-            .listen((listPostSnapshot) {
+            .listen((listPostsSnapshot) {
           setState(() {
             //getPosts crée une liste de posts
-            listPosts = getPosts(listPostSnapshot.docs);
+            listPosts = getPosts(listPostsSnapshot.docs);
           });
         });
       });
     });
   }
 
-  /// Methode traitant la listUtiliseurSnapshot de chaque utilisateur.
+  /// Methode traitant la listUtilisateurSnapshot de chaque utilisateur.
   /// Ajoute un utilisateur dans la liste des utilisateurs si non présent dans la liste
   List<Post> getUtilisateurs(List<DocumentSnapshot> listUtiliseurSnapshot) {
     List<Utilisateur> myListUtilisateur = listUtilisateurs;
@@ -89,9 +100,9 @@ class _PageFilActualiteState extends State<PageFilActualite> {
         myListUtilisateur.remove(utilisateurAChanger);
         myListUtilisateur.add(utilisateur);
       }
-      setState(() {
-        listUtilisateurs = myListUtilisateur;
-      });
+    });
+    setState(() {
+      listUtilisateurs = myListUtilisateur;
     });
   }
 
@@ -114,8 +125,9 @@ class _PageFilActualiteState extends State<PageFilActualite> {
         myListPosts.remove(postAChanger);
         myListPosts.add(post);
       }
-      ;
     });
+    //Trie de ma liste en fonction de la date
+    myListPosts.sort((a, b) => b.date.compareTo(a.date));
     return myListPosts;
   }
 }

@@ -7,7 +7,7 @@ class Post {
   String documentID;
   String postId;
   String texte;
-  String utilisateurID;
+  String utilisateurUID;
   String imageUrl;
   int date;
   List<dynamic> likes;
@@ -19,7 +19,7 @@ class Post {
     Map<String, dynamic> map = documentSnapshot.data();
     postId = map[cKeyPostId];
     texte = map[cKeyTexte];
-    utilisateurID = map[cKeyUtilisateurId];
+    utilisateurUID = map[cKeyUtilisateurId];
     imageUrl = map[cKeyImageUrl];
     date = map[cKeyDate];
     likes = map[cKeyLikes];
@@ -29,7 +29,7 @@ class Post {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
       cKeyPostId: postId,
-      cKeyUtilisateurId: utilisateurID,
+      cKeyUtilisateurId: utilisateurUID,
       cKeyDate: date,
       cKeyLikes: likes,
       cKeyCommentaires: commentaires,

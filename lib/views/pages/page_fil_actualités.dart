@@ -51,7 +51,7 @@ class _PageFilActualiteState extends State<PageFilActualite> {
           return CommentaireTuile(
             post: post,
             utilisateur: utilisateur,
-            detail: false,
+            isPageDetail: false,
           );
         },
       ),

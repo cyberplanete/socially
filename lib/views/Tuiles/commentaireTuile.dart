@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:socially/controllers/detail_post.dart';
+import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/useful/DateHelper.dart';
@@ -9,10 +11,10 @@ import 'package:socially/views/my_material.dart';
 class CommentaireTuile extends StatelessWidget {
   final Post post;
   final Utilisateur utilisateur;
-  final bool detail;
+  final bool isPageDetail;
 
   CommentaireTuile(
-      {@required this.post, @required this.utilisateur, this.detail});
+      {@required this.post, @required this.utilisateur, this.isPageDetail});
 
   @override
   Widget build(BuildContext context) {
@@ -105,13 +107,25 @@ class CommentaireTuile extends StatelessWidget {
                     icon: (post.likes.contains(utilisateur.uid)
                         ? cIconLikeFull
                         : cIconLikeEmpty),
-                    onPressed: null,
+                    onPressed: () => FireStoreController().ajouterLike(post),
                   ),
                   MyText(
                     dataText: post.likes.length.toString(),
                     color: cBaseAccent,
                   ),
-                  IconButton(onPressed: null, icon: cIconMsg),
+                  IconButton(
+                      onPressed: () {
+                        if (!isPageDetail) {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (BuildContext buildContext) {
+                            return DetailPost(
+                              post: post,
+                            );
+                          }));
+                        }
+                        ;
+                      },
+                      icon: cIconMsg),
                   MyText(
                     dataText: post.commentaires.length.toString(),
                     color: cBaseAccent,

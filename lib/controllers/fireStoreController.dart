@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
 
@@ -117,6 +118,19 @@ class FireStoreController {
 
       autreUtilisateur.documentReference.update({
         cKeyAbonnes: FieldValue.arrayUnion([cUtilisateurConnecte.uid])
+      });
+    }
+  }
+
+  /// Permettre d'ajouter ou de supprimer des posts à la listes des likes pour l'utilisateur connecté
+  ajouterLike(Post post) {
+    if (post.likes.contains(cUtilisateurConnecte.uid)) {
+      post.documentReference.update({
+        cKeyLikes: FieldValue.arrayRemove([cUtilisateurConnecte.uid])
+      });
+    } else {
+      post.documentReference.update({
+        cKeyLikes: FieldValue.arrayUnion([cUtilisateurConnecte.uid])
       });
     }
   }

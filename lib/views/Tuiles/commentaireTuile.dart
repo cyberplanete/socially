@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
+import 'package:socially/useful/DateHelper.dart';
 import 'package:socially/views/my_material.dart';
 
 class CommentaireTuile extends StatelessWidget {
@@ -38,7 +39,7 @@ class CommentaireTuile extends StatelessWidget {
                         color: cBaseAccent,
                       ),
                       MyText(
-                        dataText: "${post.date}",
+                        dataText: DateHelper().MyDate(post.date),
                         color: cPointer,
                       ),
                     ],

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
+import 'package:socially/views/Tuiles/PostTuile.dart';
 import 'package:socially/views/my_material.dart';
+import 'package:socially/views/pages/page_detail_pageCommentaire.dart';
 
-class DetailPost extends StatelessWidget {
+///Page permettant d'ajouter et d'afficher un commentaire relatif à un post.
+///DetailOfCommentairePage est utilisée pour lister les commentaires
+class PageCommentaire extends StatelessWidget {
   Utilisateur utilisateur;
   Post post;
 
-  DetailPost({this.utilisateur, this.post});
+  PageCommentaire({this.utilisateur, this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +25,10 @@ class DetailPost extends StatelessWidget {
           children: [
             Expanded(
               child: InkWell(
-                child: Container(
-                  color: Colors.pink,
+                //Ici j'affiche les commentaires du post
+                child: DetailPageOfCommentairePage(
+                  utilisateur: utilisateur,
+                  post: post,
                 ),
                 onTap: () {
                   //Permet de rentrer le clavier lorsque l'utilisateur appui sur le bouton
@@ -50,11 +57,17 @@ class DetailPost extends StatelessWidget {
                     ),
                   ),
                   IconButton(
+
+                      ///Envoyer le commentaire sur Firebase
                       onPressed: () {
                         //Permet de rentrer le clavier lorsque l'utilisateur appui sur le bouton
                         FocusScope.of(context).requestFocus(FocusNode());
                         if (textEditingController != null &&
-                            textEditingController.text != "") {}
+                            textEditingController.text != "") {
+                          FireStoreController().addCommentaire(
+                              post.documentReference,
+                              textEditingController.text);
+                        }
                       },
                       icon: cIconSend)
                 ],

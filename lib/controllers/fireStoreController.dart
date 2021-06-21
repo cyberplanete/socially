@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:socially/models/commentaire.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
@@ -171,6 +172,19 @@ class FireStoreController {
           .doc()
           .set(donneesDuPost);
     }
+  }
+
+  ///Permet d'ajouter un commentaire pour un post.
+
+  addCommentaire(DocumentReference postReference, String texte) {
+    Map<dynamic, dynamic> map = {
+      cKeyUtilisateurId: cUtilisateurConnecte.uid,
+      cKeyTexte: texte,
+      cKeyDate: DateTime.now().millisecondsSinceEpoch.toInt()
+    };
+    postReference.update({
+      cKeyCommentaires: FieldValue.arrayUnion([map])
+    });
   }
 
   ///Cette methode retourne la liste des posts pour un utilisateur

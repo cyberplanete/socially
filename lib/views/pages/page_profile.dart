@@ -10,7 +10,7 @@ import 'package:socially/delegate/MyHeader.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/useful/mes_alert_box.dart';
-import 'package:socially/views/Tuiles/commentaireTuile.dart';
+import 'package:socially/views/Tuiles/PostTuile.dart';
 import 'package:socially/views/my_material.dart';
 
 ///Classe utiliser pour afficher le profil utilisateur
@@ -139,7 +139,7 @@ class _PageProfilState extends State<PageProfil> {
                     }
                     // Recupère le commentaire à l'index depuis la liste documentSnapshot
                     Post post = Post(documentSnapshot: documents[index]);
-                    return CommentaireTuile(
+                    return PostTuile(
                         post: post, utilisateur: widget.utilisateur);
                   },
                 ),

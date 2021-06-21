@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
-import 'package:socially/views/Tuiles/commentaireTuile.dart';
+import 'package:socially/views/Tuiles/PostTuile.dart';
 import 'package:socially/views/my_material.dart';
 
 class PageFilActualite extends StatefulWidget {
@@ -48,7 +48,7 @@ class _PageFilActualiteState extends State<PageFilActualite> {
           Post post = listPosts[index];
           Utilisateur utilisateur = listUtilisateurs
               .singleWhere((element) => element.uid == post.utilisateurUID);
-          return CommentaireTuile(
+          return PostTuile(
             post: post,
             utilisateur: utilisateur,
             isPageDetail: false,

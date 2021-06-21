@@ -1,20 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:socially/controllers/detail_post.dart';
+import 'package:socially/views/pages/page_commentaire.dart';
 import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/useful/DateHelper.dart';
 import 'package:socially/views/my_material.dart';
 
-class CommentaireTuile extends StatelessWidget {
+class PostTuile extends StatelessWidget {
   final Post post;
   final Utilisateur utilisateur;
   final bool isPageDetail;
 
-  CommentaireTuile(
-      {@required this.post, @required this.utilisateur, this.isPageDetail});
+  PostTuile(
+      {@required this.post,
+      @required this.utilisateur,
+      this.isPageDetail: false});
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +120,9 @@ class CommentaireTuile extends StatelessWidget {
                         if (!isPageDetail) {
                           Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext buildContext) {
-                            return DetailPost(
+                            return PageCommentaire(
                               post: post,
+                              utilisateur: utilisateur,
                             );
                           }));
                         }

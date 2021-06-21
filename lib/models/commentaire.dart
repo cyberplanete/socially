@@ -6,7 +6,7 @@ class Commentaire {
   String texte;
   String date;
 
-  Commentaire(Map<String, dynamic> map) {
+  Commentaire(Map<dynamic, dynamic> map) {
     utilisateurUID = map[cKeyUtilisateurId];
     texte = map[cKeyTexte];
     date = DateHelper().MyDate(map[cKeyDate]);

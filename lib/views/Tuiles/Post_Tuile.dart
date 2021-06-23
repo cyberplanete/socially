@@ -117,6 +117,7 @@ class PostTuile extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {
+                        //Si je suis sur la page detail pour visionner les commentaires alors le bouton ajout de commentaire n'est pas activé
                         if (!isPageDetail) {
                           Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext buildContext) {

@@ -29,7 +29,7 @@ class _StateMainAppController extends State<MainPageController> {
   void initState() {
     ///je crée une souscription au stream, utilisé dans la classe utilisateur
     streamListenner = FireStoreController()
-        .fireStore_collectionOfUSers
+        .fireStore_collectionUtilisateurs
         .doc(widget.uid)
         .snapshots()
         .listen((document) {

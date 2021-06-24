@@ -63,7 +63,7 @@ class _PageFilActualiteState extends State<PageFilActualite> {
   configurationStreamSubscription() {
     // Ecouter les snapshots des abonnes de l'utilisateur connecté
     streamSubscription = FireStoreController()
-        .fireStore_collectionOfUSers
+        .fireStore_collectionUtilisateurs
         .where(cKeyAbonnes, arrayContains: widget.utilisateurID)
         .snapshots()
         .listen((datas) {

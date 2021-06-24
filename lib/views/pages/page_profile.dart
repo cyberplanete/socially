@@ -55,7 +55,7 @@ class _PageProfilState extends State<PageProfil> {
     textEditingController_description = TextEditingController();
     //Permettre la mise à jour en temps réel du bouton suivre .. (La base se mettait à jour mais cela n'etait pas visible sur UI)
     streamSubscription = FireStoreController()
-        .fireStore_collectionOfUSers
+        .fireStore_collectionUtilisateurs
         .doc(widget.utilisateur.uid)
         .snapshots()
         .listen((event) {

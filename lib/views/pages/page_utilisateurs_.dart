@@ -46,7 +46,8 @@ class _PageUtilisateur extends State<PageUtilisateurs> {
           return MyLoadingCenter();
         }
       },
-      stream: FireStoreController().fireStore_collectionOfUSers.snapshots(),
+      stream:
+          FireStoreController().fireStore_collectionUtilisateurs.snapshots(),
     );
   }
 }

@@ -56,7 +56,7 @@ class CommentTuile extends StatelessWidget {
         }
       },
       stream: FireStoreController()
-          .fireStore_collectionOfUSers
+          .fireStore_collectionUtilisateurs
           .doc(commentaire.utilisateurUID)
           .snapshots(),
     );

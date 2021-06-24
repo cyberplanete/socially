@@ -126,7 +126,7 @@ class MesAlertsBox {
                           textEditingController_description.text != "")
                         data[cKeyDescription] =
                             textEditingController_description.text;
-                      FireStoreController().modificationUserData(data);
+                      FireStoreController().modificationDonneeUtilisateur(data);
                       Navigator.pop(context);
                     },
                   ),
@@ -156,7 +156,7 @@ class MesAlertsBox {
                           textEditingController_description.text != "")
                         data[cKeyDescription] =
                             textEditingController_description.text;
-                      FireStoreController().modificationUserData(data);
+                      FireStoreController().modificationDonneeUtilisateur(data);
                       Navigator.pop(context);
                     },
                   ),

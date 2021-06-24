@@ -13,10 +13,12 @@ class FireStoreController {
   ///Autorisation
   final firebase_auth_instance = FirebaseAuth.instance;
 
-  ///Database
+  ///bases de données
   static final firestore_instance = FirebaseFirestore.instance;
-  final fireStore_collectionOfUSers =
+  final fireStore_collectionUtilisateurs =
       firestore_instance.collection("utilisateurs");
+  final firestore_collectionNotifications =
+      firestore_instance.collection("notifications");
 
   ///Stockage - Creation Dossier utilisateurs et dossier posts
   static final stockageInstance = FirebaseStorage.instance.ref();
@@ -67,12 +69,25 @@ class FireStoreController {
 
   ///Méthode permettant l'ajout des données utilisateur dans firebase
   ajouterUtilisateur(String uid, Map<String, dynamic> map) {
-    fireStore_collectionOfUSers.doc(uid).set(map);
+    fireStore_collectionUtilisateurs.doc(uid).set(map);
+  }
+
+  ///Methode permettant l'ajout d'une notification.
+  ajouterNotification(String from, String to, String texte) {
+    Map<String, dynamic> map = {
+      cKeyUtilisateurId: from,
+      cKeyTexte: texte,
+      cKeyDate: DateTime.now().millisecondsSinceEpoch.toInt()
+    };
+    firestore_collectionNotifications
+        .doc(to)
+        .collection("simpleNotification")
+        .add(map);
   }
 
   ///Méthode permettant la mise à jour des données utilisateurs
-  modificationUserData(Map<String, dynamic> data) {
-    fireStore_collectionOfUSers.doc(cUtilisateurConnecte.uid).update(data);
+  modificationDonneeUtilisateur(Map<String, dynamic> data) {
+    fireStore_collectionUtilisateurs.doc(cUtilisateurConnecte.uid).update(data);
   }
 
   ///Methode permettant d'ajouter une photo - Creation d'une tache d'upload du fichier puis quand cette tache est terminée, je recupère le lien de téléchargement
@@ -97,7 +112,7 @@ class FireStoreController {
         stockageUitilisateur.child(cUtilisateurConnecte.uid);
     ajouterPhoto(file, refStockage).then((value) {
       Map<String, dynamic> data = {cKeyImageUrl: value};
-      modificationUserData(data);
+      modificationDonneeUtilisateur(data);
     });
   }
 
@@ -158,7 +173,7 @@ class FireStoreController {
       ajouterPhoto(photo, emplacementStockagePost).then((finalised) {
         String imageUrl = finalised;
         donneesDuPost[cKeyImageUrl] = imageUrl;
-        fireStore_collectionOfUSers
+        fireStore_collectionUtilisateurs
             .doc(utilisateurId)
             .collection("posts")
             .doc()
@@ -166,7 +181,7 @@ class FireStoreController {
       });
     } else {
       //Dans tous les cas je cree une collection pour un 'post ' lié à un utilisateur.
-      fireStore_collectionOfUSers
+      fireStore_collectionUtilisateurs
           .doc(utilisateurId)
           .collection("posts")
           .doc()
@@ -189,5 +204,5 @@ class FireStoreController {
 
   ///Cette methode retourne la liste des posts pour un utilisateur
   Stream<QuerySnapshot> getUserPostsFrom(String uid) =>
-      fireStore_collectionOfUSers.doc(uid).collection("posts").snapshots();
+      fireStore_collectionUtilisateurs.doc(uid).collection("posts").snapshots();
 }

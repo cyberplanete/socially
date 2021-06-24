@@ -36,6 +36,8 @@ String cKeyDate = "date";
 String cKeyLikes = "likes";
 String cKeyCommentaires = " commentaires";
 String cKeyDescription = "description";
+String cKeyType = "type";
+String cKeyDocumentLocation = "documentLocation";
 
 ///Icons
 Icon cIconHome = Icon(Icons.home);

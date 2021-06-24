@@ -50,6 +50,7 @@ class UtilisateurTuile extends StatelessWidget {
                     //Ne pas pas afficher le bouton suivre si il s'agit du meme utilisateur connecte dans la liste.
                   ],
                 ),
+                //je n'affiche pas l'utilisateur connecté dans la liste des utilisateurs connectés
                 (utilisateur.uid == cUtilisateurConnecte.uid)
                     ? Container(
                         width: 0.0,

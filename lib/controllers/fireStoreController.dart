@@ -73,10 +73,13 @@ class FireStoreController {
   }
 
   ///Methode permettant l'ajout d'une notification.
-  ajouterNotification(String from, String to, String texte) {
+  ajouterNotification(String from, String to, String texte,
+      DocumentReference documentLocation, String type) {
     Map<String, dynamic> map = {
       cKeyUtilisateurId: from,
       cKeyTexte: texte,
+      cKeyType: type,
+      cKeyDocumentLocation: documentLocation,
       cKeyDate: DateTime.now().millisecondsSinceEpoch.toInt()
     };
     firestore_collectionNotifications
@@ -118,7 +121,7 @@ class FireStoreController {
 
   ///Ajoute ou supprime un autre utilisateur dans la liste des personnes à suivre et ajoute ou supprime l'utilisateur connecté de la liste des abonnés de l'autre utilisateur
   suivreUtilisateur(Utilisateur autreUtilisateur) {
-    //Retrait de d'un autre utilisateur de la liste des personnes suivies si présent dans la liste d'abonnement de l'utilisateur connecté
+    //Retrait d'un autre utilisateur de la liste des personnes suivies si présent dans la liste d'abonnement de l'utilisateur connecté
     if (cUtilisateurConnecte.abonnementList.contains(autreUtilisateur.uid)) {
       cUtilisateurConnecte.documentReference.update({
         cKeyAbonnementList: FieldValue.arrayRemove([autreUtilisateur.uid])
@@ -128,13 +131,20 @@ class FireStoreController {
         cKeyAbonnes: FieldValue.arrayRemove([cUtilisateurConnecte.uid])
       });
     } else {
+      //sinon je l'ajoute à la liste des personnes à suivre
       cUtilisateurConnecte.documentReference.update({
         cKeyAbonnementList: FieldValue.arrayUnion([autreUtilisateur.uid])
       });
-
       autreUtilisateur.documentReference.update({
         cKeyAbonnes: FieldValue.arrayUnion([cUtilisateurConnecte.uid])
       });
+      // Lorsque qu'une personne presse le bouton suivre alors j'informe l'utilisateur suivi de cette abonnement
+      ajouterNotification(
+          cUtilisateurConnecte.uid,
+          autreUtilisateur.uid,
+          "${cUtilisateurConnecte.nom} a commencé à vous suivre",
+          cUtilisateurConnecte.documentReference,
+          cKeyAbonnes);
     }
   }
 
@@ -148,6 +158,12 @@ class FireStoreController {
       post.documentReference.update({
         cKeyLikes: FieldValue.arrayUnion([cUtilisateurConnecte.uid])
       });
+      ajouterNotification(
+          cUtilisateurConnecte.uid,
+          post.postId,
+          "${cUtilisateurConnecte.nom} a aimé votre post",
+          post.documentReference,
+          cKeyLikes);
     }
   }
 
@@ -191,7 +207,8 @@ class FireStoreController {
 
   ///Permet d'ajouter un commentaire pour un post.
 
-  addCommentaire(DocumentReference postReference, String texte) {
+  addCommentaire(
+      DocumentReference postReference, String texte, String postProprietaire) {
     Map<dynamic, dynamic> map = {
       cKeyUtilisateurId: cUtilisateurConnecte.uid,
       cKeyTexte: texte,
@@ -200,6 +217,12 @@ class FireStoreController {
     postReference.update({
       cKeyCommentaires: FieldValue.arrayUnion([map])
     });
+    ajouterNotification(
+        cUtilisateurConnecte.uid,
+        postProprietaire,
+        "${cUtilisateurConnecte.nom} a commenté votre post",
+        postReference,
+        cKeyCommentaires);
   }
 
   ///Cette methode retourne la liste des posts pour un utilisateur

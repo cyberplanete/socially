@@ -66,7 +66,8 @@ class PageCommentaire extends StatelessWidget {
                             textEditingController.text != "") {
                           FireStoreController().addCommentaire(
                               post.documentReference,
-                              textEditingController.text);
+                              textEditingController.text,
+                              post.utilisateurUID);
                         }
                       },
                       icon: cIconSend)

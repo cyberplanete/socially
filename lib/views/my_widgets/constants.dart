@@ -38,6 +38,7 @@ String cKeyCommentaires = " commentaires";
 String cKeyDescription = "description";
 String cKeyType = "type";
 String cKeyDocumentLocation = "documentLocation";
+String cKeyIsNotificationRead = "IsNotificationRead";
 
 ///Icons
 Icon cIconHome = Icon(Icons.home);

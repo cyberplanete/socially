@@ -73,13 +73,18 @@ class FireStoreController {
   }
 
   ///Methode permettant l'ajout d'une notification.
-  ajouterNotification(String from, String to, String texte,
-      DocumentReference documentLocation, String type) {
+  ajouterNotification(
+      {String from,
+      String to,
+      String texte,
+      DocumentReference documentLocation,
+      String type}) {
     Map<String, dynamic> map = {
       cKeyUtilisateurId: from,
       cKeyTexte: texte,
       cKeyType: type,
       cKeyDocumentLocation: documentLocation,
+      cKeyIsNotificationRead: false,
       cKeyDate: DateTime.now().millisecondsSinceEpoch.toInt()
     };
     firestore_collectionNotifications
@@ -140,11 +145,11 @@ class FireStoreController {
       });
       // Lorsque qu'une personne presse le bouton suivre alors j'informe l'utilisateur suivi de cette abonnement
       ajouterNotification(
-          cUtilisateurConnecte.uid,
-          autreUtilisateur.uid,
-          "${cUtilisateurConnecte.nom} a commencé à vous suivre",
-          cUtilisateurConnecte.documentReference,
-          cKeyAbonnes);
+          to: autreUtilisateur.uid,
+          from: cUtilisateurConnecte.uid,
+          texte: "${cUtilisateurConnecte.nom} a commencé à vous suivre",
+          documentLocation: cUtilisateurConnecte.documentReference,
+          type: cKeyAbonnes);
     }
   }
 
@@ -159,11 +164,11 @@ class FireStoreController {
         cKeyLikes: FieldValue.arrayUnion([cUtilisateurConnecte.uid])
       });
       ajouterNotification(
-          cUtilisateurConnecte.uid,
-          post.postId,
-          "${cUtilisateurConnecte.nom} a aimé votre post",
-          post.documentReference,
-          cKeyLikes);
+          to: post.utilisateurUID,
+          from: cUtilisateurConnecte.uid,
+          texte: "${cUtilisateurConnecte.nom} a aimé votre post",
+          documentLocation: post.documentReference,
+          type: cKeyLikes);
     }
   }
 
@@ -218,11 +223,11 @@ class FireStoreController {
       cKeyCommentaires: FieldValue.arrayUnion([map])
     });
     ajouterNotification(
-        cUtilisateurConnecte.uid,
-        postProprietaire,
-        "${cUtilisateurConnecte.nom} a commenté votre post",
-        postReference,
-        cKeyCommentaires);
+        to: postProprietaire,
+        from: cUtilisateurConnecte.uid,
+        texte: "${cUtilisateurConnecte.nom} a commenté votre post",
+        documentLocation: postReference,
+        type: cKeyCommentaires);
   }
 
   ///Cette methode retourne la liste des posts pour un utilisateur

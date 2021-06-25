@@ -19,7 +19,7 @@ class PageCommentaire extends StatelessWidget {
     TextEditingController textEditingController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: cBaseAccent,
+      backgroundColor: cColorBaseAccent,
       body: SafeArea(
         child: Column(
           children: [
@@ -39,13 +39,13 @@ class PageCommentaire extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width,
               height: 1.0,
-              color: cBaseAccent,
+              color: cColorBaseAccent,
             ),
             Container(
               padding: EdgeInsets.only(left: 10, right: 10),
               width: MediaQuery.of(context).size.width,
               height: 75,
-              color: cBaseColor,
+              color: cColorBase,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

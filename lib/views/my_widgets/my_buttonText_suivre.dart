@@ -11,7 +11,7 @@ class MyButtonTextSuivre extends TextButton {
                       .contains(autreUtilisateur.uid)
                   ? "Ne plus suivre"
                   : "Suivre",
-              color: cPointer,
+              color: cColorPointer,
             ),
             onPressed: () {
               FireStoreController().suivreUtilisateur(autreUtilisateur);

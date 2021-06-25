@@ -20,7 +20,7 @@ class MyMenuConnectOrCreate extends StatelessWidget {
         width: 300,
         height: 50,
         decoration: BoxDecoration(
-          color: cPointer,
+          color: cColorPointer,
           borderRadius: BorderRadius.all(
             Radius.circular(25.0),
           ),

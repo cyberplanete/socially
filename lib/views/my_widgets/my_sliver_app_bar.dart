@@ -9,7 +9,7 @@ class MySliverAppBar extends SliverAppBar {
             flexibleSpace: FlexibleSpaceBar(
               title: MyText(
                 dataText: titre,
-                color: cBaseAccent,
+                color: cColorBaseAccent,
               ),
               background: Image(
                 image: image,

@@ -29,7 +29,7 @@ class _PageUtilisateur extends State<PageUtilisateurs> {
               // Je retourne  un array
               return [
                 MySliverAppBar(
-                    titre: "Liste des utilisateurs", image: cEventImage)
+                    titre: "Liste des utilisateurs", image: cImageEvent)
               ];
             },
             //Construction de ma liste

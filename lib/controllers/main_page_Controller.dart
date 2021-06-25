@@ -54,7 +54,7 @@ class _StateMainAppController extends State<MainPageController> {
         ? MyProgressIndicatorScafold()
         : SafeArea(
             child: Scaffold(
-              backgroundColor: cBaseColor,
+              backgroundColor: cColorBase,
 
               body: afficherPageOnSelectedIcon(),
               key: _scaffoldKey,
@@ -90,7 +90,7 @@ class _StateMainAppController extends State<MainPageController> {
               floatingActionButton: FloatingActionButton(
                 onPressed: writePost,
                 child: cIconWrite,
-                backgroundColor: cPointer,
+                backgroundColor: cColorPointer,
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.endDocked,

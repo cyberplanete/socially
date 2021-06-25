@@ -40,7 +40,7 @@ class _PageFilActualiteState extends State<PageFilActualite> {
     return NestedScrollView(
       headerSliverBuilder: (BuildContext buildContext, bool isScrolled) {
         // Je retourne  un array
-        return [MySliverAppBar(titre: "Fil d'actualité", image: cHomeImage)];
+        return [MySliverAppBar(titre: "Fil d'actualité", image: cImageHome)];
       },
       body: ListView.builder(
         itemCount: listPosts.length,

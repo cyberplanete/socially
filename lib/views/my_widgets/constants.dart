@@ -10,17 +10,17 @@ Utilisateur cUtilisateurConnecte;
 bool cIsSheetOpen = false;
 
 ///couleurs
-const Color cWhite = const Color(0xffffffff);
-const Color cBaseColor = const Color(0xff42a5f5);
-const Color cBaseAccent = const Color(0xff1976d2);
-const Color cPointer = const Color(0xfff44336);
+const Color cColorWhite = const Color(0xffffffff);
+const Color cColorBase = const Color(0xff42a5f5);
+const Color cColorBaseAccent = const Color(0xff1976d2);
+const Color cColorPointer = const Color(0xfff44336);
 
 ///Images
-AssetImage cLogoImage = AssetImage('assets/logo.png');
-AssetImage cHomeImage = AssetImage('assets/home.jpg');
-AssetImage cProfileImage = AssetImage('assets/profile.jpg');
-AssetImage cEventImage = AssetImage('assets/event.jpg');
-AssetImage cLogoWhiteImage = AssetImage('assets/logoWhite.png');
+AssetImage cImageLogo = AssetImage('assets/logo.png');
+AssetImage cImageHome = AssetImage('assets/home.jpg');
+AssetImage cImageProfile = AssetImage('assets/profile.jpg');
+AssetImage cImageEvent = AssetImage('assets/event.jpg');
+AssetImage cImageLogoWhite = AssetImage('assets/logoWhite.png');
 
 ///Database Firestore - Clés
 

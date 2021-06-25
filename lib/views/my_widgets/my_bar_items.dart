@@ -12,5 +12,5 @@ class MyBarItem extends IconButton {
   }) : super(
             icon: icon,
             onPressed: onPressed,
-            color: isIconSelected ? cPointer : cBaseColor);
+            color: isIconSelected ? cColorPointer : cColorBase);
 }

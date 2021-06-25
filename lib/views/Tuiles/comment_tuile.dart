@@ -18,7 +18,7 @@ class CommentTuile extends StatelessWidget {
         if (asyncSnapshot.hasData) {
           Utilisateur utilisateur = Utilisateur(asyncSnapshot.data);
           return Container(
-            color: cWhite,
+            color: cColorWhite,
             margin: EdgeInsets.only(left: 5.0, right: 5.0, top: 2.5),
             padding: EdgeInsets.all(5.0),
             child: Column(
@@ -40,13 +40,13 @@ class CommentTuile extends StatelessWidget {
                     ),
                     MyText(
                       dataText: commentaire.date,
-                      color: cPointer,
+                      color: cColorPointer,
                     )
                   ],
                 ),
                 MyText(
                   dataText: commentaire.texte,
-                  color: cBaseAccent,
+                  color: cColorBaseAccent,
                 )
               ],
             ),

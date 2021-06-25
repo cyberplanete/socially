@@ -19,7 +19,7 @@ class UtilisateurTuile extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (BuildContext buildContext) {
           return Scaffold(
-            backgroundColor: cBaseColor,
+            backgroundColor: cColorBase,
             body: SafeArea(
               child: PageProfil(
                 utilisateur: utilisateur,
@@ -45,7 +45,7 @@ class UtilisateurTuile extends StatelessWidget {
                         onPressed: null, urlString: utilisateur.imageUrl),
                     MyText(
                       dataText: "${utilisateur.nom} ${utilisateur.prenom}",
-                      color: cBaseAccent,
+                      color: cColorBaseAccent,
                     ),
                     //Ne pas pas afficher le bouton suivre si il s'agit du meme utilisateur connecte dans la liste.
                   ],

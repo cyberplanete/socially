@@ -19,7 +19,7 @@ class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
     return Container(
       margin: EdgeInsets.only(bottom: 5.0),
       padding: EdgeInsets.all(10.0),
-      color: cBaseAccent,
+      color: cColorBaseAccent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -43,7 +43,7 @@ class MyHeaderSliverPersistent extends SliverPersistentHeaderDelegate {
               //Ma ligne de séparation
               width: MediaQuery.of(context).size.width,
               height: 1.0,
-              color: cBaseColor),
+              color: cColorBase),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.max,

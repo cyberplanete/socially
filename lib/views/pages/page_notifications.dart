@@ -22,7 +22,7 @@ class PageNotifications extends StatelessWidget {
           return Center(
             child: MyText(
               dataText: "Aucune notification",
-              color: cPointer,
+              color: cColorPointer,
               fontSize: 40,
             ),
           );

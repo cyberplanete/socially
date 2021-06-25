@@ -14,7 +14,7 @@ class MyCustomPaintSignIn extends CustomPainter {
 
   MyCustomPaintSignIn({this.pageController}) : super(repaint: pageController) {
     my_painter = Paint();
-    my_painter.color = cWhite;
+    my_painter.color = cColorWhite;
     my_painter.style = PaintingStyle.fill;
   }
 
@@ -84,7 +84,7 @@ class MyCustomPaintSignIn extends CustomPainter {
       canvas.translate(size.width * offset, 0.0);
 
       /// Création d'une ombre sur le canvas pour donner un effet de hauteur , par rapport au path, avec une couleur, une élévation et un occulter de transparence.
-      canvas.drawShadow(myFormPath, cBaseColor, 2.5, true);
+      canvas.drawShadow(myFormPath, cColorBase, 2.5, true);
 
       ///Il ne reste plus qu'a  dessiner le path avec la méthode drawPath et avec comme style de dessin my_painter initialisé dans le constructeur.
       canvas.drawPath(myFormPath, my_painter);

@@ -34,11 +34,11 @@ class _PageNewPost extends State<PageNewPost> {
   Widget build(BuildContext context) {
     return Container(
       key: _globalKey,
-      color: cBaseColor,
+      color: cColorBase,
       height: MediaQuery.of(context).size.height * 0.6,
       child: Container(
         decoration: BoxDecoration(
-            color: cWhite,
+            color: cColorWhite,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: InkWell(
@@ -49,14 +49,14 @@ class _PageNewPost extends State<PageNewPost> {
               MyPaddingCustomWith(
                   unWidget: MyText(
                 dataText: "Ecrire un post",
-                color: cBaseAccent,
+                color: cColorBaseAccent,
                 fontSize: 25.0,
               )),
               MyPaddingCustomWith(
                   unWidget: Container(
                 ///je cree ce container permettant d'élargir ma bottomsheet sur toute la largeur de l'écran et ajouter une ligne de séparation
                 width: MediaQuery.of(context).size.width, height: 1.0,
-                color: cBaseAccent,
+                color: cColorBaseAccent,
               )),
               MyPaddingCustomWith(
                 unWidget: MyTextField(
@@ -95,7 +95,7 @@ class _PageNewPost extends State<PageNewPost> {
                           ? MyText(
                               dataText: "Aucune image",
                               fontSize: 13.0,
-                              color: cBaseAccent)
+                              color: cColorBaseAccent)
                           : Semantics(
                               child: Image.file(File(imagePrise.path)),
                               label: 'tets',

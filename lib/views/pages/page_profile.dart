@@ -95,7 +95,7 @@ class _PageProfilState extends State<PageProfil> {
                           onPressed: () =>
                               MesAlertsBox().disconnectAlert(context),
                           icon: cIconSettings,
-                          color: cPointer)
+                          color: cColorPointer)
                       : MyButtonTextSuivre(autreUtilisateur: widget.utilisateur)
                 ],
                 flexibleSpace: FlexibleSpaceBar(
@@ -111,7 +111,7 @@ class _PageProfilState extends State<PageProfil> {
                   background: Container(
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: cProfileImage, fit: BoxFit.cover)),
+                              image: cImageProfile, fit: BoxFit.cover)),
                       child: Center(
                           child: MyProfileImage(
                               taille: 75.0,
@@ -166,7 +166,7 @@ class _PageProfilState extends State<PageProfil> {
               //Inner padding depuis le container -- Padding interieur
               margin: EdgeInsets.all(7.5),
               child: Container(
-                color: cBaseAccent,
+                color: cColorBaseAccent,
                 padding: EdgeInsets.all(10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

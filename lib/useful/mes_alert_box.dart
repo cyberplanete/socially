@@ -46,7 +46,7 @@ class MesAlertsBox {
   Future<void> disconnectAlert(BuildContext context) async {
     MyText titre = MyText(
       dataText: 'Voulez-vous vous déconnecter ?',
-      color: cBaseColor,
+      color: cColorBase,
     );
     //If barrierDismissible is true, then tapping this barrier will cause the current route to be popped (see Navigator.pop) with null as the value.
     //Montre une dialogBox Android ou pour Ios
@@ -93,7 +93,7 @@ class MesAlertsBox {
     );
     MyText titre = MyText(
       dataText: "Changer les données de l'utilisateur",
-      color: cPointer,
+      color: cColorPointer,
     );
     return showDialog(
       context: context,
@@ -173,7 +173,7 @@ class MesAlertsBox {
       },
       child: MyText(
         dataText: texte,
-        color: cPointer,
+        color: cColorPointer,
       ),
     );
   }

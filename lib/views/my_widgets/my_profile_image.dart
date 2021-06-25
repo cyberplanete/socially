@@ -18,5 +18,5 @@ class MyProfileImage extends InkWell {
                 //urlString est null ? ou vide ?
                 backgroundImage: (urlString != null && urlString != "")
                     ? CachedNetworkImageProvider(urlString)
-                    : cLogoImage));
+                    : cImageLogo));
 }

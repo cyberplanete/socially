@@ -40,11 +40,11 @@ class PostTuile extends StatelessWidget {
                     children: [
                       MyText(
                         dataText: "${utilisateur.nom} ${utilisateur.prenom}",
-                        color: cBaseAccent,
+                        color: cColorBaseAccent,
                       ),
                       MyText(
                         dataText: DateHelper().MyDate(post.date),
-                        color: cPointer,
+                        color: cColorPointer,
                       ),
                     ],
                   ),
@@ -57,7 +57,7 @@ class PostTuile extends StatelessWidget {
                       unWidget: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 1.0,
-                      color: cBaseAccent,
+                      color: cColorBaseAccent,
                     ))
                   : Container(
                       height: 0.0,
@@ -86,7 +86,7 @@ class PostTuile extends StatelessWidget {
                   ? MyPaddingCustomWith(
                       unWidget: MyText(
                       dataText: post.texte,
-                      color: cBaseAccent,
+                      color: cColorBaseAccent,
                     ))
                   : Container(
                       height: 0.0,
@@ -97,7 +97,7 @@ class PostTuile extends StatelessWidget {
                 unWidget: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 1.0,
-                  color: cBaseAccent,
+                  color: cColorBaseAccent,
                 ),
               ),
 
@@ -113,7 +113,7 @@ class PostTuile extends StatelessWidget {
                   ),
                   MyText(
                     dataText: post.likes.length.toString(),
-                    color: cBaseAccent,
+                    color: cColorBaseAccent,
                   ),
                   IconButton(
                       onPressed: () {
@@ -132,7 +132,7 @@ class PostTuile extends StatelessWidget {
                       icon: cIconMsg),
                   MyText(
                     dataText: post.commentaires.length.toString(),
-                    color: cBaseAccent,
+                    color: cColorBaseAccent,
                   )
                 ],
               )

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:socially/models/commentaire.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
-import 'package:socially/views/Tuiles/Post_Tuile.dart';
+import 'package:socially/views/Tuiles/post_tuile.dart';
 import 'package:socially/views/Tuiles/comment_tuile.dart';
 import 'package:socially/views/my_material.dart';
 

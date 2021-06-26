@@ -6,7 +6,7 @@ Application de réseau social pour iOS et Android avec Flutter2, Dart et Firebas
 
 ## Screenshots
 
-
+<img src="ttps://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot6.jpg" width="200" />
 ![screenshot](screenshots/Screenshot.jpg)
 ![screenshot2](screenshots/Screenshot2.jpg)
 ![screenshot3](screenshots/Screenshot3.jpg)

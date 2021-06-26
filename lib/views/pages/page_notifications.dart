@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/notificationSocially.dart';
 import 'package:socially/models/utilisateurs.dart';
+import 'package:socially/views/Tuiles/notification_tuile.dart';
 import 'package:socially/views/my_material.dart';
 import 'package:socially/views/my_widgets/my_text_widget.dart';
 
@@ -32,12 +33,8 @@ class PageNotifications extends StatelessWidget {
           return ListView.builder(
             itemBuilder: (BuildContext buildContext, int index) {
               NotificationSocially notification = NotificationSocially(
-                  map: listNotificationSnapshot[index].data());
-              return ListTile(
-                title: MyText(
-                  dataText: "Notification numero ${notification.texte}",
-                ),
-              );
+                  snapshot: listNotificationSnapshot[index]);
+              return NotificationTuile(notification: notification);
             },
             itemCount: listNotificationSnapshot.length,
           );

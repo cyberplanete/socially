@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:socially/views/pages/page_commentaire.dart';
+import 'package:socially/views/pages/page_ajout_commentaire.dart';
 import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
@@ -121,7 +121,7 @@ class PostTuile extends StatelessWidget {
                         if (!isPageDetail) {
                           Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext buildContext) {
-                            return PageCommentaire(
+                            return PageAjoutCommentaire(
                               post: post,
                               utilisateur: utilisateur,
                             );

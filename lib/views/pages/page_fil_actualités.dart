@@ -46,8 +46,8 @@ class _PageFilActualiteState extends State<PageFilActualite> {
         itemCount: listPosts.length,
         itemBuilder: (BuildContext buildContext, int index) {
           Post post = listPosts[index];
-          Utilisateur utilisateur = listUtilisateurs
-              .singleWhere((element) => element.uid == post.utilisateurUID);
+          Utilisateur utilisateur = listUtilisateurs.singleWhere(
+              (utilisateurID) => utilisateurID.uid == post.utilisateurUID);
           return PostTuile(
             post: post,
             utilisateur: utilisateur,

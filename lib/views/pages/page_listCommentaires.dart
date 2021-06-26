@@ -8,11 +8,11 @@ import 'package:socially/views/Tuiles/comment_tuile.dart';
 import 'package:socially/views/my_material.dart';
 
 /// Widget permettant d'importer et d'afficher les commentaires dans la page commentaire
-class DetailPageOfCommentairePage extends StatelessWidget {
+class ListCommentairesPage extends StatelessWidget {
   Utilisateur utilisateur;
   Post post;
 
-  DetailPageOfCommentairePage({this.utilisateur, this.post});
+  ListCommentairesPage({this.utilisateur, this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,6 @@ class DetailPageOfCommentairePage extends StatelessWidget {
         } else {
           return MyLoadingCenter();
         }
-        ;
       },
     );
   }

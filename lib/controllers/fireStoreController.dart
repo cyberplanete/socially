@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:socially/models/commentaire.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
 import 'package:socially/views/my_material.dart';
@@ -147,7 +145,8 @@ class FireStoreController {
       ajouterNotification(
           to: autreUtilisateur.uid,
           from: cUtilisateurConnecte.uid,
-          texte: "${cUtilisateurConnecte.nom} a commencé à vous suivre",
+          texte:
+              "${cUtilisateurConnecte.prenom} ${cUtilisateurConnecte.nom} a commencé à vous suivre",
           documentLocation: cUtilisateurConnecte.documentReference,
           type: cKeyAbonnes);
     }
@@ -166,7 +165,8 @@ class FireStoreController {
       ajouterNotification(
           to: post.utilisateurUID,
           from: cUtilisateurConnecte.uid,
-          texte: "${cUtilisateurConnecte.nom} a aimé votre post",
+          texte:
+              "${cUtilisateurConnecte.prenom} ${cUtilisateurConnecte.nom} a aimé votre post",
           documentLocation: post.documentReference,
           type: cKeyLikes);
     }
@@ -225,7 +225,8 @@ class FireStoreController {
     ajouterNotification(
         to: postProprietaire,
         from: cUtilisateurConnecte.uid,
-        texte: "${cUtilisateurConnecte.nom} a commenté votre post",
+        texte:
+            "${cUtilisateurConnecte.prenom} ${cUtilisateurConnecte.nom} a commenté votre post",
         documentLocation: postReference,
         type: cKeyCommentaires);
   }

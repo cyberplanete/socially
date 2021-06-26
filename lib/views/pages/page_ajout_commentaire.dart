@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:socially/controllers/fireStoreController.dart';
 import 'package:socially/models/post.dart';
 import 'package:socially/models/utilisateurs.dart';
-import 'package:socially/views/Tuiles/post_tuile.dart';
 import 'package:socially/views/my_material.dart';
-import 'package:socially/views/pages/page_detail_pageCommentaire.dart';
+import 'package:socially/views/pages/page_listCommentaires.dart';
 
 ///Page permettant d'ajouter et d'afficher un commentaire relatif à un post.
 ///DetailOfCommentairePage est utilisée pour lister les commentaires
-class PageCommentaire extends StatelessWidget {
+class PageAjoutCommentaire extends StatelessWidget {
   Utilisateur utilisateur;
   Post post;
 
-  PageCommentaire({this.utilisateur, this.post});
+  PageAjoutCommentaire({this.utilisateur, this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class PageCommentaire extends StatelessWidget {
             Expanded(
               child: InkWell(
                 //Ici j'affiche les commentaires du post
-                child: DetailPageOfCommentairePage(
+                child: ListCommentairesPage(
                   utilisateur: utilisateur,
                   post: post,
                 ),

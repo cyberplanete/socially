@@ -10,8 +10,8 @@ class Post {
   String utilisateurUID;
   String imageUrl;
   int date;
-  List<dynamic> likes;
-  List<dynamic> commentaires;
+  List<dynamic> likes = [];
+  List<dynamic> commentaires = [];
 
   Post({DocumentSnapshot documentSnapshot}) {
     documentReference = documentSnapshot.reference;

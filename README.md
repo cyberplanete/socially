@@ -13,6 +13,6 @@ Application de réseau social pour iOS et Android avec Flutter2, Dart et Firebas
 ![screenshot4](screenshots/Screenshot4.jpg)
 ![screenshot5](screenshots/Screenshot5.jpg)
 ![screenshot6](screenshots/Screenshot6.jpg)
-![screenshot7](screenshots/Screenshot7.jpg = 250x)
+![screenshot7](screenshots/Screenshot7.jpg)
 
 ### En cours de développement

@@ -5,14 +5,11 @@ Application de réseau social pour iOS et Android avec Flutter2, Dart et Firebas
 ### Compatible Android ou Ios
 
 ## Screenshots
+<img src="screenshots/screenshot1.png" width="200"><img src="screenshots/screenshot2.png" width="200">
+<img src="screenshots/screenshot3.png" width="200"><img src="screenshots/screenshot4.png" width="200">
+<img src="screenshots/screenshot5.png" width="200"><img src="screenshots/screenshot6.png" width="200">
+<img src="screenshots/screenshot7.png" width="200">
 
-<img src="https://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot.jpg" width="200" />
-<img src="https://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot2.jpg" width="200" />
-<img src="https://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot3.jpg" width="200" />
-<img src="https://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot4.jpg" width="200" />
-<img src="https://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot5.jpg" width="200" />
-<img src="https://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot6.jpg" width="200" />
-<img src="https://github.com/cyberplanete/socially/blob/master/screenshots/Screenshot7.jpg" width="200" />
 
 
 ### En cours de développement
